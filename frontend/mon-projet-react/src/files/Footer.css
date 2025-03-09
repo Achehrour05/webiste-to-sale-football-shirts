@@ -1,0 +1,160 @@
+/* Footer Container */
+.footer {
+    background-color: #111;
+    color: white;
+    padding: 50px 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+  }
+  
+  /* Footer Grid */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+  }
+  
+  /* Footer Columns */
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .footer-description {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.6;
+  }
+  
+  /* Contact Info */
+  .contact-info {
+    margin-top: 15px;
+  }
+  
+  .contact-number {
+    font-size: 22px;
+    color: red;
+    font-weight: bold;
+  }
+  
+  .contact-text {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 5px;
+  }
+  
+  .email {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .email a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .email a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Social Icons */
+  .social-icons {
+    margin-top: 20px;
+  }
+  
+  .social-icons a {
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .social-icons a:hover {
+    color: red;
+  }
+  
+  /* Footer Links */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-links a {
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  /* Footer Bottom */
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+  }
+  
+  .footer-bottom p {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  .payment-icons img {
+    height: 30px;
+    margin-left: 10px;
+  }
+  @media (max-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+  }
+  
+  /* Small screens (phones) */
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 30px;
+    }
+  
+    .footer-column {
+      align-items: center;
+    }
+  
+    .footer-links {
+      padding: 0;
+    }
+  
+    .social-icons a {
+      font-size: 22px;
+      margin: 10px;
+    }
+  
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .payment-icons img {
+      margin: 10px;
+    }
+  }  

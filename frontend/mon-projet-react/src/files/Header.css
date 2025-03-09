@@ -1,0 +1,197 @@
+.navbarcontainer{
+    margin-bottom: 100px;
+}
+.navbar{
+    height: 50px;
+}
+.navbar-brand {
+    position: absolute;
+    right: 46%;
+    font-size: x-large;
+    font-weight: 500;
+}
+.contact {
+    font-size: large;
+    font-weight: 400;
+    position: absolute;
+    left: 50px;
+}
+
+.navbar-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    position: absolute;
+    right: 45px;
+}
+.clubs {
+    height: 100vh;
+    width: 40vw;
+    transform: translate(-75%, -8%);
+}
+.close{
+    text-align: end;
+    display: none;
+}
+.dropdown-item:hover{
+    background-color: transparent;
+}
+.great{
+    color: black;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: 500;
+}
+.clubs{
+        margin-left: 20px;  
+        padding: 10px;     
+        border-radius: 5px; 
+      
+}
+
+@media (max-width: 1027px) {
+    .contact {
+      display: none;
+    }
+    .navbar-brand {
+        position: absolute;
+        left: 50px;
+    }
+}
+@media (max-width: 854px) {
+    .clubs {
+        height: 100vh;
+        width: 50vw;
+        transform: translate(-65%, -9%);
+    }
+}
+@media (max-width: 469px) {
+    .clubs {
+        height: 100vh;
+        width: 100vw;
+        transform: translate(-80%, -11%);
+    }
+}
+@media (max-width: 374px) {
+    .contact {
+      display: none;
+    }
+    .navbar-brand {
+        position: absolute;
+        left: 30px;
+    }
+    .navbar-icons {
+        display: flex;
+        gap: 0px;
+        position: absolute;
+        right: 30px;
+    }
+    .close{
+        text-align: end;
+        display:flex;
+    }
+    
+}
+.laliga{
+    height: 20px;
+    width: 20px;
+}
+.pl{
+    height: 18px;
+    width: 30px;
+}
+.nike{
+    height: 18px;
+    width: 25px;
+}
+.balllogo{
+    height: 22px;
+    width: 25px;
+}
+.sa{
+    height: 20px;
+    width: 17px;
+    margin-left: 6px;
+}
+.bl{
+    height: 20px;
+    width: 20px;
+    margin-left: 6px;
+}
+.l1{
+    height: 20px;
+    width: 35px;
+}
+
+/* ✅ Style de la barre de recherche */
+.search {
+    height: auto;
+    width: 40vw;
+    padding: 15px;
+    transform: translateX(-70%);
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Input stylisé */
+.recherche input {
+    width: 100%;
+    padding: 10px;
+    background-color:transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    outline: none;
+}
+
+/* ✅ Bouton Cancel */
+.recherche button {
+    background-color:transparent;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border-bottom: 1px solid black;
+}
+
+.recherche button:hover {
+    background-color: rgb(199, 199, 199);
+}
+
+/* ✅ Alignement des éléments */
+.recherche {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* 🎯 RESPONSIVITÉ */
+@media (max-width: 1024px) {
+    .search {
+        width: 50vw;
+        transform: translateX(-65%);
+    }
+}
+
+@media (max-width: 768px) {
+    .search {
+        width: 50vw;
+        transform: translateX(-60%);
+    }
+}
+
+@media (max-width: 480px) {
+    .search {
+        width: 50vw;
+        transform: translateX(-40%);
+    }
+    .recherche {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .recherche button {
+        width: 50%;
+    }
+}
+
+

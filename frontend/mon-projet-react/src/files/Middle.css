@@ -1,0 +1,195 @@
+.mainpicture {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainpicture img {
+    width: 100%;
+    height: auto; 
+    max-height: 90vh; 
+    object-fit: cover; 
+}
+@media (max-width: 768px) {
+    .mainpicture img {
+        max-height: 60vh; 
+    }
+}
+
+@media (max-width: 480px) {
+    .mainpicture img {
+        max-height: 50vh; 
+    }
+}
+h4{
+    margin-top: 100px;
+    margin-left: 20px;
+}
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 60px;
+}
+
+.scroll-content {
+    display: flex;
+    gap: 100px;
+    padding: 20px;
+}
+
+.scroll-item {
+    min-width: 250px;
+    text-align: center;
+}
+
+.scroll-item img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.scroll-item p{
+    font-size: larger;
+    font-weight: 600;
+}
+
+.scroll-item img:hover{
+    scale: 0.9;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+.ads {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ads img {
+    width: 100%;
+    max-height: 90vh; 
+    object-fit: cover; 
+}
+.ads-container {
+    position: relative;
+    display: inline-block; 
+    margin-bottom: 50px;
+}
+
+
+.carousel img {
+    height: 450px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensures images cover the entire area */
+  }
+  
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.6); /* Adds a dark overlay behind text */
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .carousel-indicators {
+    background-color: transparent !important;
+  }
+.shop-button{
+    position: absolute;
+    bottom: 10%; 
+    left: 10%;
+    background-color:transparent; 
+    color: rgb(255, 255, 255);
+    padding: 6px 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    width: 12%;
+    border: 1.5px solid rgb(255, 255, 255);
+}
+.carousel{
+    margin-bottom: 100px;
+}
+.carousel img {
+    width: 100%; /* Prendre toute la largeur du carrousel */
+    height: auto; /* La hauteur s'ajustera automatiquement pour conserver les proportions */
+    object-fit: cover; /* Les images rempliront complètement l'espace sans déformer */
+}
+
+.shop-button:hover {
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0);
+    border: 1.5px solid rgb(255, 255, 255);
+}
+.txt-left{
+    position: absolute;
+    bottom: 28%; 
+    left: 10%;
+    font-size: xx-large;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+.des{
+    position: absolute;
+    bottom: 20%; 
+    left: 10%;
+    color: rgb(255, 255, 255);
+}
+
+/* Make sure the text and buttons are positioned correctly */
+.carousel-item {
+    text-align: center;  /* Center the text and buttons */
+    position: relative;
+}
+
+
+/* Adjust font size and button size for smaller screens */
+@media (max-width: 1008px) {
+    .txt-left {
+        font-size: 28px;
+    }
+    .des {
+        font-size: 20px;
+    }
+    .shop-button {
+        font-size: 15px;
+    }
+}
+@media (max-width: 768px) {
+    .txt-left {
+        font-size: 18px;
+    }
+    .des {
+        font-size: 14px;
+    }
+    .shop-button {
+        font-size: 7px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .txt-left {
+        font-size: 16px;
+    }
+    .des {
+        font-size: 12px;
+    }
+    .shop-button {
+        font-size: 3px;
+        padding: 3px 8px;
+    }
+}
+.etage {
+    display: flex;
+    gap: 50px;
+    padding: 20px;
+}
+.eme img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}

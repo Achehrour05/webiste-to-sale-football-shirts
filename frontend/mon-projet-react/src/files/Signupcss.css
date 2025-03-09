@@ -1,0 +1,73 @@
+.body {
+    display: flex;
+    background-color: #ffffff; 
+    padding: 20px;
+    gap: 5%;
+    margin-bottom: 100px;
+}
+
+
+.signupcontainer {
+    border-radius: 20px;
+    border: 1px solid gray;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50%;
+    
+}
+.cont{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: top;
+    padding-left: 20px;
+    flex-direction: column;
+}
+h2{
+    text-align: center;
+    margin-top: 40px;
+    color: black;
+}
+.inputcontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 35px;
+    
+}
+.inputcontainer input{
+    height: 45px;
+    width: 80%;
+    margin-bottom: 15px;
+    background-color: #e7e7e7;
+    border: none;
+    color: #212121;
+}
+.buttoncontainerr{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 20%;
+    margin-left: 35px;
+}
+button{
+    height: 30px;
+    width: 100px;
+    border-radius: 20px;
+    background-color: rgb(206, 206, 206);
+    border: none;
+    color: black;
+}
+
+.bt{
+    display: flex;
+    flex-direction:row;
+    gap: 20px;
+}
+
+button:hover{
+    background-color: black;
+    color: white;
+}
+

@@ -1,0 +1,98 @@
+
+.produitContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+}
+
+.lefts, .rights {
+    width: 45%;
+    box-sizing: border-box;
+}
+
+.rights {
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    .lefts, .rights {
+        width: 100%;
+    }
+}
+
+.maintaitle {
+    font-size: xx-large;
+    font-weight: 700;
+    padding-bottom: 20px;
+    border-bottom: 0.1px solid rgb(234, 234, 234);
+    color: rgb(31, 31, 31);
+}
+
+.btn1 {
+    border: 1px solid rgb(30, 30, 30);
+    border-radius: 0px;
+    width: 30%;
+}
+
+.btn2 {
+    font-size: 10px;
+}
+
+.prix {
+    font-size: x-large;
+    font-weight: 550;
+}
+
+.radio {
+    margin-bottom: 20px;
+}
+
+.inputbarre {
+    height: 40px;
+    width: 30%;
+    margin-bottom: 10px;
+}
+
+.ajout {
+    height: 50px;
+    width: 30%;
+    font-size: smaller;
+    margin-left: 15px;
+    background-color: rgb(192, 32, 32);
+    margin-bottom: 50px;
+}
+
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 60px;
+}
+
+.scroll-content {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.scroll-item {
+    min-width: 250px;
+    text-align: center;
+}
+
+.scroll-item img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.scroll-item p {
+    font-size: larger;
+    font-weight: 600;
+}
+
+.scroll-item img:hover {
+    transform: scale(0.9);
+}
