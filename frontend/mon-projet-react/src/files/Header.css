@@ -1,197 +1,470 @@
-.navbarcontainer{
+.navbarcontainer {
     margin-bottom: 100px;
-}
-.navbar{
-    height: 50px;
-}
-.navbar-brand {
-    position: absolute;
-    right: 46%;
-    font-size: x-large;
-    font-weight: 500;
-}
-.contact {
-    font-size: large;
-    font-weight: 400;
-    position: absolute;
-    left: 50px;
-}
-
-.navbar-icons {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    position: absolute;
-    right: 45px;
-}
-.clubs {
-    height: 100vh;
-    width: 40vw;
-    transform: translate(-75%, -8%);
-}
-.close{
-    text-align: end;
-    display: none;
-}
-.dropdown-item:hover{
-    background-color: transparent;
-}
-.great{
-    color: black;
+  }
+  
+  .navbar {
+    height: 70px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  /* Brand and Contact */
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #333;
     text-decoration: none;
-    font-size: larger;
+    transition: color 0.2s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar-brand:hover {
+    color: #000;
+  }
+  
+  .contact {
+    font-size: 14px;
     font-weight: 500;
-}
-.clubs{
-        margin-left: 20px;  
-        padding: 10px;     
-        border-radius: 5px; 
-      
-}
-
-@media (max-width: 1027px) {
-    .contact {
-      display: none;
-    }
-    .navbar-brand {
-        position: absolute;
-        left: 50px;
-    }
-}
-@media (max-width: 854px) {
-    .clubs {
-        height: 100vh;
-        width: 50vw;
-        transform: translate(-65%, -9%);
-    }
-}
-@media (max-width: 469px) {
-    .clubs {
-        height: 100vh;
-        width: 100vw;
-        transform: translate(-80%, -11%);
-    }
-}
-@media (max-width: 374px) {
-    .contact {
-      display: none;
-    }
-    .navbar-brand {
-        position: absolute;
-        left: 30px;
-    }
-    .navbar-icons {
-        display: flex;
-        gap: 0px;
-        position: absolute;
-        right: 30px;
-    }
-    .close{
-        text-align: end;
-        display:flex;
-    }
-    
-}
-.laliga{
-    height: 20px;
-    width: 20px;
-}
-.pl{
-    height: 18px;
-    width: 30px;
-}
-.nike{
-    height: 18px;
-    width: 25px;
-}
-.balllogo{
-    height: 22px;
-    width: 25px;
-}
-.sa{
-    height: 20px;
-    width: 17px;
-    margin-left: 6px;
-}
-.bl{
-    height: 20px;
-    width: 20px;
-    margin-left: 6px;
-}
-.l1{
-    height: 20px;
-    width: 35px;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  
+  .contact:hover {
+    color: #000;
+  }
+  
+ /* Icons section - improved spacing */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* Decrease gap between icons */
+  position: relative;
+  right: 40px;
 }
 
-/* ✅ Style de la barre de recherche */
-.search {
-    height: auto;
-    width: 40vw;
-    padding: 15px;
-    transform: translateX(-70%);
-    background: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* Group the utility icons together */
+.icon-group {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Reduce gap further */
 }
 
-/* ✅ Input stylisé */
-.recherche input {
-    width: 100%;
-    padding: 10px;
-    background-color:transparent;
-    border: none;
-    border-bottom: 1px solid black;
-    font-size: 16px;
-    outline: none;
+/* Icon button wrapper */
+.nav-icon-wrapper {
+  position: relative;
 }
 
-/* ✅ Bouton Cancel */
-.recherche button {
-    background-color:transparent;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    border-bottom: 1px solid black;
+  
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  width: 150%;
 }
 
-.recherche button:hover {
-    background-color: rgb(199, 199, 199);
+.nav-icon-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* ✅ Alignement des éléments */
-.recherche {
+.nav-icon {
+  font-size: 20px; /* Vous pouvez ajuster cela pour faire les icônes plus petites si nécessaire */
+}
+  /* Favorite dropdown - aligned properly */
+  .favorite-dropdown {
+    position: relative;
+  }
+  
+  .favorite-dropdown-btn {
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+  .favorite-dropdown-btn:hover{
+    background-color: rgb(241, 239, 239);
+    color: black;
+  }
+  .dropdown-icon {
+    font-size: 12px;
+    color: #777;
+    transition: transform 0.2s ease;
+  }
+  
+  .favorite-menu {
+    width: 260px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    right: 0;
+    left: auto;
+    margin-top: 8px;
+  }
+  
+  .favorite-menu-content {
+    display: flex;
+    flex-direction: column;
+ 
+  }
+  
+  .menu-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 6px 0;
+    padding: 0;
+  }
+  
+  .menu-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .menu-item:hover {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  .menu-item img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+  
+  .menu-item span {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+ /* Navbar icons alignment */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  right: 40px;
+  justify-content: flex-end; /* Ajoutez cette propriété pour aligner à droite */
 }
 
-/* 🎯 RESPONSIVITÉ */
-@media (max-width: 1024px) {
-    .search {
-        width: 50vw;
-        transform: translateX(-65%);
-    }
+/* Responsiveness for smaller screens */
+@media (max-width: 992px) {
+  .navbar-icons {
+    gap: 15px;
+    right: 20px;
+    justify-content: flex-end; /* Garder les icônes à droite sur les petits écrans */
+  }
 }
 
 @media (max-width: 768px) {
-    .search {
-        width: 50vw;
-        transform: translateX(-60%);
-    }
+  .navbar-icons {
+    gap: 10px;
+    justify-content: flex-end; /* Garder les icônes à droite sur les petits écrans */
+  }
+
+  .favorite-menu {
+    width: 230px;
+    padding: 12px;
+  }
+
+  .menu-item {
+    font-size: 12px;
+  }
+}
+
+
+
+
+@media (max-width: 817px) {
+  /* Masquer le lien Contact Us sur les petits écrans */
+  .contact {
+    display: none;
+  }
+
+  /* Aligner Blancora à gauche */
+  .navbar-brand {
+    left: 0; /* Aligner à gauche */
+    transform: none; /* Supprimer la transformation pour centrer */
+  }
+
+  /* Ajouter du padding à gauche pour le logo si nécessaire */
+  .navbar {
+    padding-left: 15px;
+  }
+
+  /* Aligner les icônes à droite */
+  .navbar-icons {
+    position: absolute;
+    right: 15px; /* Mettre les icônes à droite */
+    gap: 5px; /* Espacement ajusté entre les icônes */
+  }
+
+  .icon-group {
+    gap: 4px; /* Espacement ajusté entre les icônes dans le groupe */
+  }
+
+  /* Réduire la taille des icônes si nécessaire */
+  .nav-icon {
+    font-size: 18px;
+  }
+}
+/* Favorite dropdown visibility */
+.favorite-dropdown {
+  display: block; /* Par défaut, garder visible */
+}
+
+
+.nav-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-icon-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav-icon-btn:hover {
+  color: #007bff;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  width: 300px;
+  border-radius: 8px;
+  z-index: 10;
+  max-width: 90vw; /* Ensures the dropdown doesn't overflow on small screens */
+}
+
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.close-icon {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.close-icon:hover {
+  color: #ff4040;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+}
+
+.search-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
 }
 
 @media (max-width: 480px) {
-    .search {
-        width: 50vw;
-        transform: translateX(-40%);
-    }
-    .recherche {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .recherche button {
-        width: 50%;
-    }
+  .nav-icon-btn {
+    font-size: 1.2rem;
+  }
+
 }
 
+.search-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
 
+.search-dropdown.left-align {
+  left: 0; /* Aligns it to the left */
+  right: auto; /* Remove any right offset */
+}
+
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+.search-input-wrapper {
+  padding: 10px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.search-btn {
+  width: 100%;
+  padding: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Adjust the search icon size for smaller screens */
+@media (max-width: 537px) {
+  .nav-icon-btn {
+    font-size: 1.2rem; /* Reduce size for smaller screens */
+  }
+
+  .search-dropdown {
+    width: 80%; /* Make the dropdown take less space on smaller screens */
+    left: 0%; /* Center it on small screens */
+  }
+}
+
+/* Make the search icon wrap properly on smaller screens */
+@media (max-width: 768px) {
+  .navbar-icons {
+    gap: 15px; /* Adjust spacing between icons for smaller screens */
+  }
+
+  .nav-icon-btn {
+    font-size: 1.4rem; /* Slightly smaller search icon */
+  }
+}
+
+/* For larger screens (desktop), the search icon remains normal */
+@media (min-width: 768px) {
+  .nav-icon-btn {
+    font-size: 1.5rem; /* Default icon size for large screens */
+  }
+
+  .search-dropdown {
+    width: 300px; /* Default width for the search dropdown */
+  }
+}
+
+/* Ensure the search input width adjusts accordingly */
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  width: 300px;
+  border-radius: 8px;
+  z-index: 10;
+  max-width: 90vw; /* Ensures the dropdown doesn't overflow on small screens */
+}
+
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.search-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+}
+.search-btn{
+  width: 30%;
+}

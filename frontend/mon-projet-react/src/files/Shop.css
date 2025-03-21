@@ -104,6 +104,33 @@ body {
 .descrip{
     cursor: pointer;
 }
+
+/* Heart component styling */
+.react-heart {
+    transition: all 0.3s ease;
+  }
+  
+  .react-heart:hover {
+    transform: scale(1.1);
+  }
+  
+  /* If you need to override default colors */
+  .react-heart path:first-child {
+    stroke: #666 !important;
+  }
+  
+  .react-heart.active path:first-child {
+    stroke: #ff0000 !important;
+    fill: #ff0000 !important;
+  }
+  .react-heart {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .react-heart:hover {
+    transform: scale(1.1);
+  }
 /* Media Queries for Responsiveness */
 
 @media (max-width: 1024px) {
@@ -153,3 +180,81 @@ body {
         width: 90%;
     }
 }
+.containerr {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .left {
+    display: flex;
+    flex-direction: column; /* Tout en une seule colonne */
+    gap: 20px; /* Espacement entre les éléments */
+    width: 300px; /* Largeur fixe pour la colonne de gauche */
+  }
+  
+  .right {
+    flex: 1; /* Prend tout l'espace restant */
+  }
+  
+  .categories, .price-filter, .size-selector, .sort-selector {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .slider-container {
+    margin-top: 15px;
+  }
+  
+  .product {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .scroll-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .scroll-item img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+  .descrip {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .productinput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .heart {
+    font-size: 24px;
+    cursor: pointer;
+  }

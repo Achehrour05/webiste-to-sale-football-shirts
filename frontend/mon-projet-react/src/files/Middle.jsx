@@ -4,6 +4,7 @@ import React from "react";
 import "./Middle.css";
 import { Carousel } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
+import {Button} from "@heroui/react";
 
 const items = [
   { id: 1, img: require("../assets/mu.jpg"), text: "Welcome to Manchester United" },
@@ -98,7 +99,7 @@ function HorizontalScroll() {
       </div>
       
       {/* Carousel Section */}
-      <Carousel interval={2000} pause="false">
+      <Carousel interval={2000} pause="false" id="carousel">
         <Carousel.Item>
           <img className="d-block w-100" src={require("../assets/cr7.jpg")} alt="First slide" />
           <p className="txt-left">Get Your New Real Madrid Kit</p>
@@ -124,7 +125,11 @@ function HorizontalScroll() {
           <img className="d-block w-100" src={ require("../assets/boot.jpg")} alt="Fourth slide" />
           <p className="txt-left">Get Your New Boot</p>
           <p className="des">Limited edition boots</p>
-          <button className="shop-button">Shop Now</button>
+          <div className="flex flex-wrap gap-4 items-center">
+                <Button color="primary" variant="bordered">
+                  Bordered
+                </Button>
+          </div>
         </Carousel.Item>
       </Carousel>
       <h4>Top Picks!</h4>

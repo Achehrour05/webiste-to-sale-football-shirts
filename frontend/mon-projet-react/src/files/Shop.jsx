@@ -1,19 +1,45 @@
+import React, { useState, useEffect } from "react";
 import "./Shop.css";
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
-import { useEffect } from "react";
 import { CiHeart } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
+import { useWishlist } from "./WishlistContext";  // Import the wishlist context
+import Heart from "react-heart";
+import Tri from "./Tri";
+
+const CustomHeart = ({ isActive, onClick }) => (
+  <div
+    style={{
+      width: "24px",
+      cursor: "pointer",
+      color: isActive ? "red" : "gray",
+      transition: "color 0.3s ease",
+    }}
+    onClick={onClick}
+  >
+    {isActive ? "❤️" : <CiHeart />}
+  </div>
+);
 
 function Shop() {
-  const [checkedItems, setCheckedItems] = useState(["Chaussures de football","Kits","Balls"]);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(3600);
-  const [taille, setTaille] = useState(["taille",38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]);
+  const [checkedItems, setCheckedItems] = useState(["Chaussures de football", "Kits", "Balls"]);
+  const [value, setValue] = useState([100, 300]);
   const [selectedSize, setSelectedSize] = useState("Taille");
-  const [selectedCat, setSelectedCat] = useState("Tri du plus recent au plus ancien");
-  const [cat, setCat] = useState(["Tri du plus recent au plus ancien","Tri par prix croissante","Tri par prix decroissante"]);
+  const [selectedCat, setSelectedCat] = useState("recent au ancien");
+  const [minPrice, setMinPrice] = useState(100);
+  const [maxPrice, setMaxPrice] = useState(300);
+  const [products, setProducts] = useState([]);
+  const { wishlist, toggleWishlist } = useWishlist();  // Access wishlist and toggle function
+
   const product = [
     { id: 1, img: require("../assets/bayern.jpg"), text: "Bayern Munich", price: "100 DH" },
     { id: 2, img: require("../assets/dortmund.jpg"), text: "Brossia Dortmund", price: "400 DH" },
@@ -47,47 +73,33 @@ function Shop() {
     { id: 30, img: require("../assets/fenerbahce.jpg"), text: "Fenerbahce", price: "800 DH" }
   ];
 
-  
-  const handleMinPriceChange = (e) => {
-    setMinPrice(Number(e.target.value));
-  }
-  const handleMaxPriceChange = (e) => setMaxPrice(Number(e.target.value));
+  useEffect(() => {
+    setProducts(product.filter(item => {
+      const price = parseInt(item.price.replace(' DH', ''));
+      return price >= minPrice && price <= maxPrice;
+    }));
+  }, [minPrice, maxPrice]);
 
-  const handleSizeSelect = (size) => {
-    setSelectedSize(size);
+  const handleSliderChange = (newValue) => {
+    setValue(newValue);
+    setMinPrice(newValue[0]);
+    setMaxPrice(newValue[1]);
   };
 
-  const [products, setProducts] = useState(product);
-  const handleCatSelect = (cat) => {
-    setSelectedCat(cat);
+  const handleMinPriceChange = (e) => {
+    const newMinPrice = Number(e.target.value);
+    setMinPrice(newMinPrice);
+    setValue([newMinPrice, maxPrice]);
+  };
 
-    if (cat === "Tri par prix croissante") {
-        setProducts([...product].sort((a, b) => 
-            parseInt(a.price) - parseInt(b.price)
-        )) 
-    } 
-    else if (cat === "Tri par prix decroissante") {
-      setProducts([...product].sort((a, b) => 
-        parseInt(b.price) - parseInt(a.price)
-    )) 
-    } 
-    else{
-      setProducts(product)
-    }
-  
-};
-
-
-useEffect(() => {
-  setProducts(product.filter(item => parseInt(item.price) >= minPrice && parseInt(item.price) <= maxPrice));
-}, [minPrice, maxPrice]);
-
-
-
+  const handleMaxPriceChange = (e) => {
+    const newMaxPrice = Number(e.target.value);
+    setMaxPrice(newMaxPrice);
+    setValue([minPrice, newMaxPrice]);
+  };
 
   const navigate = useNavigate();
   const handleItemClick = (productId, productImg, productText, productPrice) => {
-    // Vérifiez que vous passez bien tous les paramètres
     navigate(`/produit/${productId}`, { 
       state: { 
         img: productImg, 
@@ -97,75 +109,46 @@ useEffect(() => {
     });
   };
 
-  const sortedByPriceCroi = [...product].sort((a, b) => 
-    parseInt(a.price) - parseInt(b.price)
-);
+  const handleSizeSelect = (event) => {
+    setSelectedSize(event.target.value);
+  };
+
+  const handleSortChange = (sortedProducts) => {
+    setProducts(sortedProducts);
+  };
 
   return (
     <div className="containerr">
       <div className="left">
-        <div className="categories">
-        <h6>Product Categories</h6>
-        {checkedItems.map((x) => (
-          <label key={x.id} style={{ display: "block", marginBottom: "5px" }}  >
-            <input type="checkbox" />
-            {x}
-          </label>
-        ))}
-        </div>
-
-        <h6>Filter by price</h6>
-        <div className="input">
-          <input className="text" type="number" min="0" max="3600" value={minPrice} onChange={handleMinPriceChange} />
-          <input className="text" type="number" min="0" max="3600" value={maxPrice} onChange={handleMaxPriceChange} />
-        </div>
-        <div className="input">
-          <input className="change" type="range" min="0" max="3600" value={minPrice} onChange={handleMinPriceChange} />
-          <input className="change" type="range" min="0" max="3600" value={maxPrice} onChange={handleMaxPriceChange} />
-        </div>
-
-        <div className="dropdown marg">
-          <button className="btn btn1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {selectedSize} 
-          </button>
-          <ul className="dropdown-menu">
-            {taille.map((t, index) => (
-              <li key={index}>
-                <button className="dropdown-item btn2" onClick={() => handleSizeSelect(t)}>
-                  {t}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="dropdown">
-          <button className="btn btn1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {selectedCat} 
-          </button>
-          <ul className="dropdown-menu">
-            {cat.map((t, index) => (
-              <li key={index}>
-                <button className="dropdown-item btn2" onClick={() => handleCatSelect(t)}>
-                  {t}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Passez la fonction de rappel à Tri */}
+        <Tri
+          item={products}
+          onSortChange={handleSortChange}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+          setMinPrice={setMinPrice}
+          setMaxPrice={setMaxPrice}
+        />
       </div>
+
       <div className="right">
         <div className="product">
           {products.map((kit) => (
-            <div key={kit.id} className="scroll-item eme" >
-              <img src={kit.img} alt={kit.text}  onClick={() => handleItemClick(kit.id, kit.img, kit.text, kit.price)}/>
-              <p className="descrip"  onClick={() => handleItemClick(kit.id, kit.img, kit.text, kit.price)}>{kit.text} </p>
+            <div key={kit.id} className="scroll-item eme">
+              <img src={kit.img} alt={kit.text} onClick={() => handleItemClick(kit.id, kit.img, kit.text, kit.price)} />
+              <p className="descrip" onClick={() => handleItemClick(kit.id, kit.img, kit.text, kit.price)}>{kit.text}</p>
               <div className="productinput">
-              <button className="button"><span className="p">Choix des option</span></button>
-              <span className="heart"><CiHeart /></span>
+                <button className="button"><span className="p">Choix des options</span></button>
+                <div style={{ width: "2rem" }}>
+                  <CustomHeart
+                    isActive={wishlist.some((p) => p.id === kit.id)}
+                    onClick={() => toggleWishlist(kit)}
+                  />
+                </div>
               </div>
             </div>
           ))}
-      </div>
+        </div>
       </div>
     </div>
   );

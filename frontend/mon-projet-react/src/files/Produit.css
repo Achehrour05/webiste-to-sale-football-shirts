@@ -5,8 +5,12 @@
     margin-bottom: 100px;
 }
 
-.lefts, .rights {
+.rights {
     width: 45%;
+    box-sizing: border-box;
+}
+.lefts {
+    width: 40%;
     box-sizing: border-box;
 }
 

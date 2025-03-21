@@ -1,30 +1,106 @@
-import React, { useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import React, { useState, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Produit.css";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
 
+// Composant réutilisable pour le sélecteur de taille
+const SizeSelector = ({ sizes, selectedSize, onSizeChange }) => {
+  return (
+    <FormControl fullWidth>
+      <InputLabel id="size-select-label">Taille</InputLabel>
+      <Select
+        labelId="size-select-label"
+        id="size-select"
+        value={selectedSize}
+        label="Taille"
+        onChange={(e) => onSizeChange(e.target.value)}
+      >
+        {sizes.map((size) => (
+          <MenuItem key={size} value={size}>
+            {size}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+};
+
+// Composant réutilisable pour les options de personnalisation
+const CustomizationOptions = ({ customizationOption, onCustomizationChange }) => {
+  return (
+    <FormControl>
+      <FormLabel id="customization-radio-buttons-group-label">
+        Options de personnalisation
+      </FormLabel>
+      <RadioGroup
+        aria-labelledby="customization-radio-buttons-group-label"
+        value={customizationOption}
+        name="customization-radio-buttons-group"
+        onChange={(e) => onCustomizationChange(e.target.value)}
+      >
+        <FormControlLabel value="without" control={<Radio />} label="Non, Merci !" />
+        <FormControlLabel
+          value="nomNumero"
+          control={<Radio />}
+          label="Nom + Numéro (+50,00 DH)"
+        />
+        <FormControlLabel
+          value="nomNumeroDrapeau"
+          control={<Radio />}
+          label="Nom + Numéro + Drapeau (+100,00 DH)"
+        />
+      </RadioGroup>
+    </FormControl>
+  );
+};
+
+// Composant réutilisable pour l'upload de fichier
+const FileUpload = ({ onFileChange }) => {
+  return (
+    <div>
+      <p>Insérer le logo ou emoji</p>
+      <input type="file" onChange={onFileChange} />
+    </div>
+  );
+};
+
+// Composant principal
 function Produit() {
-  const { id } = useParams();
   const location = useLocation();
 
-  // Récupérer les données passées avec navigate
   const productImage = location.state?.img || "";
   const productText = location.state?.text || "Produit Inconnu";
   const productPrice = location.state?.price || "Prix non disponible";
 
-  const [selectedSize, setSelectedSize] = useState("Choisir une taille");
+  const [selectedSize, setSelectedSize] = useState("");
   const [customizationOption, setCustomizationOption] = useState("without");
   const [nameNumber, setNameNumber] = useState("");
   const [quantity, setQuantity] = useState(1);
 
-  // Fonction pour gérer le changement de fichier (pour l'input type="file")
-  const handleFileChange = (e) => {
+  const sizes = [38, 39, 40, 41, 42, 43, 44, 45];
+
+  const handleFileChange = useCallback((e) => {
     const file = e.target.files[0];
     if (file) {
-      console.log(file); // Vous pouvez ajouter un traitement spécifique ici, comme l'affichage de l'image ou l'envoi au serveur
+      console.log(file);
     }
-  };
+  }, []);
+
+  const handleQuantityChange = useCallback((e) => {
+    const value = parseInt(e.target.value);
+    if (value >= 1) {
+      setQuantity(value);
+    }
+  }, []);
 
   return (
     <div className="produitContainer">
@@ -41,54 +117,20 @@ function Produit() {
         <p className="prix">{productPrice}</p>
 
         <div className="dropdown marg">
-          <button className="btn btn1 dropdown-toggle" type="button">
-            {selectedSize}
-          </button>
-          <ul className="dropdown-menu">
-            {[38, 39, 40, 41, 42, 43, 44, 45].map((size) => (
-              <li key={size}>
-                <button className="dropdown-item" onClick={() => setSelectedSize(size)}>
-                  {size}
-                </button>
-              </li>
-            ))}
-          </ul>
+          <SizeSelector
+            sizes={sizes}
+            selectedSize={selectedSize}
+            onSizeChange={setSelectedSize}
+          />
         </div>
 
         <p className="maintaitle">Rendez-le Unique !</p>
         <p>Personnalisation disponible (Préparation sous 24 à 48 heures).</p>
 
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              value="without"
-              checked={customizationOption === "without"}
-              onChange={(e) => setCustomizationOption(e.target.value)}
-            />
-            Non, Merci!
-          </label>
-          <br />
-          <label>
-            <input
-              type="radio"
-              value="nomNumero"
-              checked={customizationOption === "nomNumero"}
-              onChange={(e) => setCustomizationOption(e.target.value)}
-            />
-            Nom + Numéro (+50,00 DH)
-          </label>
-          <br />
-          <label>
-            <input
-              type="radio"
-              value="nomNumeroDrapeau"
-              checked={customizationOption === "nomNumeroDrapeau"}
-              onChange={(e) => setCustomizationOption(e.target.value)}
-            />
-            Nom + Numéro + Drapeau (+100,00 DH)
-          </label>
-        </div>
+        <CustomizationOptions
+          customizationOption={customizationOption}
+          onCustomizationChange={setCustomizationOption}
+        />
 
         {customizationOption !== "without" && (
           <>
@@ -101,16 +143,13 @@ function Produit() {
               onChange={(e) => setNameNumber(e.target.value)}
             />
             {customizationOption !== "nomNumero" && (
-              <>
-                <p>Insérer le logo ou emoji</p>
-                <input type="file" onChange={handleFileChange} />
-              </>
+              <FileUpload onFileChange={handleFileChange} />
             )}
             <p>Quantité</p>
             <input
               type="number"
               value={quantity}
-              onChange={(e) => setQuantity(parseInt(e.target.value))}
+              onChange={handleQuantityChange}
               min="1"
             />
             <button className="ajout">Ajouter au panier</button>

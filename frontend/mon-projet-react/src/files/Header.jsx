@@ -1,109 +1,178 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js"; 
-import { FaBars } from "react-icons/fa";
-import { LuSearch } from "react-icons/lu";
-import { BiShoppingBag } from "react-icons/bi";
-import { FiUser } from "react-icons/fi";
-import { RiCloseLargeLine } from "react-icons/ri";
+  import React, { useState } from "react";
+  import { useNavigate } from "react-router-dom";
+  import { LuSearch } from "react-icons/lu";
+  import { BiShoppingBag } from "react-icons/bi";
+  import { CiHeart } from "react-icons/ci";
+  import { FiUser } from "react-icons/fi";
+  import { RiCloseLargeLine } from "react-icons/ri";
+  import { FaChevronDown } from "react-icons/fa";
+  import "bootstrap/dist/css/bootstrap.min.css";
+  import "bootstrap/dist/js/bootstrap.bundle.min.js";
+  import "./Header.css";
 
-import "./Header.css";
-import { useNavigate } from "react-router-dom";
+  function Header() {
+    const navigate = useNavigate();
+    const [searchOpen, setSearchOpen] = useState(false);
 
-function Header() {
+    const handleButtonClick = (route) => {
+      navigate(route);
+    };
 
-  const navigate = useNavigate(); // Initialize the navigate function
+    const toggleSearch = () => {
+      setSearchOpen(!searchOpen);
+    };
 
-  // Single handler to navigate to different routes
-  const handleButtonClick = (route) => {
-    navigate(route); // Navigate to the passed route
-  };
-  return (
-    <>
+    return (
       <div className="navbarcontainer">
-        <nav className="navbar navbar-expand-lg bg-white fixed-top">
+        <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container">
+            <a className="contact" href="#">+ Contact Us</a>
+            
+            <a 
+              className="navbar-brand" 
+              href="#" 
+              onClick={() => handleButtonClick("/")}
+            >
+              Blancora
+            </a>
 
-            <a className="contact text-dark nav-link" href="#">+ Contact Us</a>
+            <div className="navbar-icons">
+              {/* Icons grouped more tightly together */}
+              <div className="icon-group">
+             {/* Search button */}
+{/* Search button */}
+<div className="nav-icon-wrapper">
+  <button 
+    className="nav-icon-btn" 
+    onClick={toggleSearch}
+    aria-label="Search"
+  >
+    <LuSearch className="nav-icon" />
+  </button>
+  
+  {searchOpen && (
+    <div className="search-dropdown">
+      <div className="search-header">
+        <span>Search Products</span>
+        <button onClick={toggleSearch}>
+          <RiCloseLargeLine className="close-icon" />
+        </button>
+      </div>
+      <div className="search-input-wrapper">
+        <input 
+          type="text" 
+          placeholder="What are you looking for?" 
+          autoFocus
+          className="search-input"
+        />
+        <button className="search-btn">Search</button>
+      </div>
+    </div>
+  )}
+</div>
 
-            <a className="navbar-brand text-dark nav-link" href="#" onClick={() => handleButtonClick("/")}>Blancora</a>
 
-            <div className="navbar-icons d-flex gap-3">
-              <a className="nav-link text-dark" href="#"><BiShoppingBag /></a>
-              <a className="nav-link text-dark" href="#" onClick={() => handleButtonClick("/registration")}><FiUser /></a>
 
-              <div className="dropdown">
-                <button className="btn menu-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <LuSearch />
-                </button>
-                <ul className="dropdown-menu search">
-                  <li><a className="dropdown-item close" href="#"><RiCloseLargeLine /></a></li>
-                  <li><a className="dropdown-item" href="#">
-                    <div className="recherche">
-                      <input type="text" placeholder="Search..."/>
-                      <button>Cancel</button>
-                    </div>
-                  </a></li>
-                </ul>
+                {/* Cart Icon */}
+                <div className="nav-icon-wrapper">
+                  <button 
+                    className="nav-icon-btn" 
+                    aria-label="Shopping bag"
+                  >
+                    <BiShoppingBag className="nav-icon" />
+                  </button>
+                </div>
+
+                {/* Wishlist Icon */}
+                <div className="nav-icon-wrapper">
+                  <button 
+                    className="nav-icon-btn" 
+                    onClick={() => handleButtonClick("/wishlist")}
+                    aria-label="Wishlist"
+                  >
+                    <CiHeart className="nav-icon" />
+                  </button>
+                </div>
+
+                {/* Account Icon */}
+                <div className="nav-icon-wrapper">
+                  <button 
+                    className="nav-icon-btn" 
+                    onClick={() => handleButtonClick("/registration")}
+                    aria-label="User account"
+                  >
+                    <FiUser className="nav-icon" />
+                  </button>
+                </div>
               </div>
 
-              <div className="dropdown">
-                <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                  Your Favourite
+              {/* Favorite dropdown - now separate from other icons */}
+              <div className="favorite-dropdown">
+                <button 
+                  className="favorite-dropdown-btn" 
+                  type="button" 
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false"
+                >
+                  <span>Your Favorite</span>
+                  <FaChevronDown className="dropdown-icon" />
                 </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li>
-  <a className="dropdown-item" href="#">
-    Premier League 
-    <img className="pl" src={require("../assets/pl.png")} alt="PL" />
-  </a>
-</li>
-<li>
-  <a className="dropdown-item" href="#">
-    LALIGA 
-    <img className="laliga" src={require("../assets/laliga.png")} alt="Laliga" />
-  </a>
-</li>
-<li>
-  <a className="dropdown-item" href="#">
-    Serie A 
-    <img className="sa" src={require("../assets/sa.png")} alt="Serie A" />
-  </a>
-</li>
-<li>
-  <a className="dropdown-item" href="#">
-    Bundesliga 
-    <img className="bl" src={require("../assets/bl.png")} alt="Bundesliga" />
-  </a>
-</li>
-<li>
-  <a className="dropdown-item" href="#">
-    Ligue 1 
-    <img className="l1" src={require("../assets/l1.png")} alt="Ligue 1" />
-  </a>
-</li>
-<li>
-  <a className="dropdown-item" href="#">
-    Nike 
-    <img className="nike" src={require("../assets/nike.png")} alt="nike" />
-  </a>
-</li>
-<li>
-  <a className="dropdown-item" href="#">
-    Balls 
-    <img className="balllogo" src={require("../assets/balllogo.png")} alt="balllogo" />
-  </a>
-</li>
-
-                </ul>
+                
+                <div className="dropdown-menu favorite-menu">
+                  <div className="favorite-menu-content">
+                    <h6 className="menu-section-title">Leagues</h6>
+                    <div className="menu-section">
+                      <a href="#" onClick={() => handleButtonClick("/english")} className="menu-item">
+                        <img src={require("../assets/pl.png")} alt="Premier League" />
+                        <span>PL</span>
+                      </a>
+                      
+                      <a href="#" onClick={() => handleButtonClick("/spanish")} className="menu-item">
+                        <img src={require("../assets/laliga.png")} alt="La Liga" />
+                        <span>LaLiga</span>
+                      </a>
+                      
+                      <a href="#" onClick={() => handleButtonClick("/italie")} className="menu-item">
+                        <img src={require("../assets/sa.png")} alt="Serie A" />
+                        <span>Serie A</span>
+                      </a>
+                      
+                      <a href="#" onClick={() => handleButtonClick("/germain")} className="menu-item">
+                        <img src={require("../assets/bl.png")} alt="Bundesliga" />
+                        <span>Bundesliga</span>
+                      </a>
+                      
+                      <a href="#" onClick={() => handleButtonClick("/france")} className="menu-item">
+                        <img src={require("../assets/l1.png")} alt="Ligue 1" />
+                        <span>Ligue 1</span>
+                      </a>
+                      
+                      <a href="#" onClick={() => handleButtonClick("/other")} className="menu-item">
+                        <img src={require("../assets/other.png")} alt="Other leagues" />
+                        <span>Other </span>
+                      </a>
+                    </div>
+                    
+                    <h6 className="menu-section-title">Categories</h6>
+                    <div className="menu-section">
+                      <a href="#" className="menu-item">
+                        <img src={require("../assets/nike.png")} alt="Nike" />
+                        <span>Nike</span>
+                      </a>
+                      
+                      <a href="#" className="menu-item">
+                        <img src={require("../assets/balllogo.png")} alt="Balls" />
+                        <span>Balls</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </nav>
       </div>
+    );
+  }
 
-      
-    </>
-  );
-}
-
-export default Header;
+  export default Header;
