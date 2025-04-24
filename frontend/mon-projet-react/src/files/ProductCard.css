@@ -1,0 +1,13 @@
+.cardContainer{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    height: 100px;
+}
+.lefttt{
+    width: 50%;
+}
+.righttt{
+    width: 50%;
+    border: 1px solid rebeccapurple;
+}

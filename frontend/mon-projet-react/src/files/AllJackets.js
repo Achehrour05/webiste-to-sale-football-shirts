@@ -1,0 +1,28 @@
+export const jak = {
+  jacket: [
+    { id: 49, img: require("../assets/AJAX JACKET.JPG"), text: "AJAX JACKET", price: "720 DH", category: "Jacket" },
+    { id: 50, img: require("../assets/BRAZIL JACKET.JPG"), text: "BRAZIL JACKET", price: "800 DH", category: "Jacket" },
+    { id: 51, img: require("../assets/CHELSEA JACKET.JPG"), text: "CHELSEA JACKET", price: "750 DH", category: "Jacket" },
+    { id: 52, img: require("../assets/ENGLAND JACKET.JPG"), text: "ENGLAND JACKET", price: "700 DH", category: "Jacket" },
+    { id: 53, img: require("../assets/JUVENTUS JACKET.JPG"), text: "JUVENTUS JACKET", price: "740 DH", category: "Jacket" },
+  ],
+  ALL: [
+    { id: 54, img: require("../assets/LIVERPOOL JACKET.JPG"), text: "LIVERPOOL JACKET", price: "600 DH", category: "Jacket" },
+    { id: 55, img: require("../assets/MUN JACKET.JPG"), text: "MUN JACKET", price: "580 DH", category: "Jacket" },
+    { id: 56, img: require("../assets/NIKE TOTTENHAM HOTSPUR JACKET.JPG"), text: "NIKE TOTTENHAM HOTSPUR JACKET", price: "550 DH", category: "Jacket" },
+    { id: 57, img: require("../assets/NIKE USA JACKET.JPG"), text: "NIKE USA JACKET", price: "570 DH", category: "Jacket" },
+    { id: 58, img: require("../assets/PORTUGAL JACKET.JPG"), text: "PORTUGAL JACKET", price: "800 DH", category: "Jacket" },
+    { id: 59, img: require("../assets/ADIDAS ENTRADA 22.JPG"), text: "ADIDAS ENTRADA 22", price: "600 DH", category: "Jacket" },
+    { id: 60, img: require("../assets/NIKE PARK 20 RAIN JACKET.JPG"), text: "NIKE PARK 20 RAIN JACKET", price: "700 DH", category: "Jacket" },
+    { id: 61, img: require("../assets/STANNO PRIME JACKET.JPG"), text: "STANNO PRIME JACKET", price: "830 DH", category: "Jacket" },
+    { id: 62, img: require("../assets/JAMA CHAMPIONSHIP.JPG"), text: "JAMA CHAMPIONSHIP", price: "630 DH", category: "Jacket" },
+    { id: 72, img: require("../assets/JOMA MONTREAL JACKET.JPG"), text: "JOMA MONTREAL JACKET", price: "760 DH", category: "Jacket" },
+    { id: 73, img: require("../assets/JAMA COMBI GALA.JPG"), text: "JAMA COMBI GALA", price: "680 DH", category: "Jacket" },
+    { id: 74, img: require("../assets/NIKE ACADEMY.JPG"), text: "NIKE ACADEMY", price: "640 DH", category: "Jacket" },
+    { id: 75, img: require("../assets/AJAX JACKET.JPG"), text: "AJAX JACKET", price: "720 DH", category: "Jacket" },
+    { id: 76, img: require("../assets/BRAZIL JACKET.JPG"), text: "BRAZIL JACKET", price: "800 DH", category: "Jacket" },
+    { id: 77, img: require("../assets/CHELSEA JACKET.JPG"), text: "CHELSEA JACKET", price: "750 DH", category: "Jacket" },
+    { id: 78, img: require("../assets/ENGLAND JACKET.JPG"), text: "ENGLAND JACKET", price: "700 DH", category: "Jacket" },
+    { id: 79, img: require("../assets/JUVENTUS JACKET.JPG"), text: "JUVENTUS JACKET", price: "740 DH", category: "Jacket" },
+],
+};

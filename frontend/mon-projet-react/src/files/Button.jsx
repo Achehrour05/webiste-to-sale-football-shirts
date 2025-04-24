@@ -1,11 +1,13 @@
-import {Button} from "@heroui/react";
+import * as React from 'react';
+import Button from '@mui/material/Button';
 
-export default function App() {
+export default function DisableElevation() {
   return (
-    <div className="flex flex-wrap gap-4 items-center">
-      <Button color="primary" variant="bordered">
-        Bordered
-      </Button>
-    </div>
+    <Button variant="contained" 
+    disableElevation
+    sx={{ width: '170px' }} 
+    >
+      Save & Continue
+    </Button>
   );
 }

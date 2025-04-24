@@ -1,0 +1,29 @@
+.heart-icon {
+    cursor: pointer;
+    color: gray;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-size: 24px;
+  }
+  
+  .heart-icon.active {
+    color: red;
+  }
+  
+  .heart-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  .heart-icon:active {
+    transform: scale(0.9);
+  }
+
+
+
+
+
+
+
+
+
+
+  

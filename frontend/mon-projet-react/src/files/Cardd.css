@@ -1,0 +1,50 @@
+.App {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .fruit-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .fruit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 120px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 110px;
+    cursor: pointer;
+    text-decoration: none; /* Supprime le soulignement du lien */
+  }
+  
+  .fruit-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .fruit-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .fruit-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: black; /* Couleur noire forcée */
+    text-decoration: none; /* Supprime le soulignement si c'est un lien */
+    border-top: none; /* Supprime toute bordure supérieure */
+  }
+  
+  .fruit-price {
+    color: green;
+  }

@@ -1,0 +1,67 @@
+
+.PayContainer{
+    display: flex;
+    margin: 3%;
+}
+.rightt{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+.leftt{
+    width: 50%;
+    gap: 0px;
+    height: 100%;
+}
+.middle{
+    color: rgb(176, 176, 176);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+.middle::before,
+.middle::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+    margin: 5px;
+}
+.pp{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgb(255, 207, 50);
+    margin-bottom: 15px;
+}
+.pp img{
+    height: 120%;
+    width: 30%;
+}
+.pp p{
+    color: rgb(10, 6, 78);
+    font-weight: 700;
+}
+.pp:hover{
+    background-color: rgb(237, 166, 0);
+    transform: translateY(-4px); /* Légère élévation */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Ombre douce */
+}
+.frm2{
+    display: flex;
+    flex-direction: row;
+} 
+h6{
+    margin-top: 15px;
+}
+.paybutt{
+    display: flex;
+    justify-content: end;
+
+}
+

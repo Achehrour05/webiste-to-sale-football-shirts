@@ -1,102 +1,76 @@
-
-.produitContainer {
+.product-container {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 100px;
+    padding: 20px;
+    gap: 20px;
 }
 
-.rights {
-    width: 45%;
-    box-sizing: border-box;
-}
-.lefts {
+.product-image-section {
     width: 40%;
     box-sizing: border-box;
 }
 
-.rights {
-    margin-left: 20px;
+.product-details-section {
+    width: 45%;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 768px) {
-    .lefts, .rights {
-        width: 100%;
-    }
-}
-
-.maintaitle {
+.product-title {
     font-size: xx-large;
     font-weight: 700;
     padding-bottom: 20px;
-    border-bottom: 0.1px solid rgb(234, 234, 234);
-    color: rgb(31, 31, 31);
+    border-bottom: 1px solid #eaeaea;
+    color: #1f1f1f;
 }
 
-.btn1 {
-    border: 1px solid rgb(30, 30, 30);
-    border-radius: 0px;
-    width: 30%;
-}
-
-.btn2 {
-    font-size: 10px;
-}
-
-.prix {
+.product-price {
     font-size: x-large;
     font-weight: 550;
+    color: #333;
+    margin-top: 10px;
 }
 
-.radio {
+.size-selector-container {
     margin-bottom: 20px;
 }
 
-.inputbarre {
+.customization-input {
     height: 40px;
-    width: 30%;
+    width: 100%;
     margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
-.ajout {
+.add-to-cart-button {
     height: 50px;
-    width: 30%;
-    font-size: smaller;
-    margin-left: 15px;
-    background-color: rgb(192, 32, 32);
-    margin-bottom: 50px;
+    width: 100%;
+    font-size: 16px;
+    background-color: #c02020;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.scroll-container {
-    overflow-x: auto;
-    white-space: nowrap;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 60px;
+.add-to-cart-button:hover {
+    background-color: #a01818;
 }
 
-.scroll-content {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
+.margin-bottom {
+    margin-bottom: 20px;
 }
 
-.scroll-item {
-    min-width: 250px;
-    text-align: center;
-}
-
-.scroll-item img {
-    width: 250px;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 30px;
-}
-
-.scroll-item p {
-    font-size: larger;
-    font-weight: 600;
-}
-
-.scroll-item img:hover {
-    transform: scale(0.9);
+@media (max-width: 768px) {
+    .product-image-section, .product-details-section {
+        width: 100%;
+    }
 }

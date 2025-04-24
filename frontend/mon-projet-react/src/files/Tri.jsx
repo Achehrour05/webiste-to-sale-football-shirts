@@ -10,40 +10,61 @@ import {
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-function Tri({ item, onSortChange, minPrice, maxPrice, setMinPrice, setMaxPrice }) {
-  const [checkedItems, setCheckedItems] = useState(["Chaussures de football", "Kits", "Balls"]);
-  const [value, setValue] = useState([minPrice, maxPrice]); // Utilisez les props pour initialiser le slider
+function Tri({ 
+  item, 
+  onSortChange, 
+  minPrice, 
+  maxPrice, 
+  setMinPrice, 
+  setMaxPrice,
+  checkedItems = [],       // Optional (for categories)
+  setCheckedItems = () => {},  // Optional (for categories)
+  categories = []         // Optional (if empty, hides category filter)
+}) {
+  const [value, setValue] = useState([minPrice, maxPrice]);
   const [selectedSize, setSelectedSize] = useState("Taille");
   const [selectedCat, setSelectedCat] = useState("recent au ancien");
 
-  // Mettre à jour les états minPrice et maxPrice dans Shop lorsque le slider change
-  const handleSliderChange = (newValue) => {
-    setValue(newValue);
-    setMinPrice(newValue[0]); // Mettre à jour minPrice dans Shop
-    setMaxPrice(newValue[1]); // Mettre à jour maxPrice dans Shop
-  };
-
-  // Mettre à jour le slider lorsque minPrice ou maxPrice change
+  // Update slider when min/max price changes
   useEffect(() => {
     setValue([minPrice, maxPrice]);
   }, [minPrice, maxPrice]);
 
+  // Price range slider handler
+  const handleSliderChange = (newValue) => {
+    setValue(newValue);
+    setMinPrice(newValue[0]);
+    setMaxPrice(newValue[1]);
+  };
+
+  // Input field handlers for min/max price
   const handleMinPriceChange = (e) => {
-    const newMinPrice = Number(e.target.value);
-    setMinPrice(newMinPrice); // Mettre à jour minPrice dans Shop
+    const newMinPrice = Math.max(0, Math.min(Number(e.target.value), maxPrice));
+    setMinPrice(newMinPrice);
     setValue([newMinPrice, maxPrice]);
   };
 
   const handleMaxPriceChange = (e) => {
-    const newMaxPrice = Number(e.target.value);
-    setMaxPrice(newMaxPrice); // Mettre à jour maxPrice dans Shop
+    const newMaxPrice = Math.max(minPrice, Math.min(Number(e.target.value), 3000));
+    setMaxPrice(newMaxPrice);
     setValue([minPrice, newMaxPrice]);
   };
 
+  // Size dropdown handler
   const handleSizeSelect = (event) => {
     setSelectedSize(event.target.value);
   };
 
+  // Category checkbox handler (only if categories exist)
+  const handleCheckboxChange = (category) => {
+    setCheckedItems(prev => 
+      prev.includes(category) 
+        ? prev.filter(item => item !== category)
+        : [...prev, category]
+    );
+  };
+
+  // Sorting dropdown handler
   const handleCatSelect = (event) => {
     const cat = event.target.value;
     setSelectedCat(cat);
@@ -59,40 +80,49 @@ function Tri({ item, onSortChange, minPrice, maxPrice, setMinPrice, setMaxPrice 
       );
     }
 
-    // Appeler la fonction de rappel pour mettre à jour les produits dans Shop
     onSortChange(sortedProducts);
   };
 
   return (
     <div>
-      <div className="categories">
-        <h6>Product Categories</h6>
-        {checkedItems.map((x) => (
-          <FormControlLabel
-            key={x}
-            control={<Checkbox defaultChecked />}
-            label={x}
-          />
-        ))}
-      </div>
+      {/* Only show categories section if categories are provided */}
+      {categories.length > 0 && (
+        <div className="categories">
+          <h6>Catégories de produits</h6>
+          {categories.map((category) => (
+            <FormControlLabel
+              key={category}
+              control={
+                <Checkbox 
+                  checked={checkedItems.includes(category)}
+                  onChange={() => handleCheckboxChange(category)}
+                />
+              }
+              label={category}
+            />
+          ))}
+        </div>
+      )}
 
-      {/* Filtre par prix */}
+      {/* Price filter (always shown) */}
       <div className="price-filter">
-        <h6>Filter by price</h6>
+        <h6>Filtrer par prix</h6>
         <div className="input">
           <input
-            className="text"
+            id="minPrice"
+            className="w-full py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             type="number"
             min="0"
-            max="3600"
+            max={maxPrice}
             value={minPrice}
             onChange={handleMinPriceChange}
           />
           <input
-            className="text"
+            id="maxPrice"
+            className="w-full py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             type="number"
-            min="0"
-            max="3600"
+            min={minPrice}
+            max="3000"
             value={maxPrice}
             onChange={handleMaxPriceChange}
           />
@@ -101,17 +131,17 @@ function Tri({ item, onSortChange, minPrice, maxPrice, setMinPrice, setMaxPrice 
           <Slider
             range
             min={0}
-            max={1000}
+            max={3000}
             value={value}
             onChange={handleSliderChange}
           />
           <p className="text-default-500 font-medium text-small">
-            Selected budget: {minPrice} - {maxPrice}
+            Budget sélectionné: {minPrice} - {maxPrice} DH
           </p>
         </div>
       </div>
 
-      {/* Sélecteur de taille */}
+      {/* Size selector (always shown) */}
       <div className="size-selector">
         <FormControl fullWidth>
           <InputLabel id="size-select-label">Choisir la Taille</InputLabel>
@@ -129,15 +159,15 @@ function Tri({ item, onSortChange, minPrice, maxPrice, setMinPrice, setMaxPrice 
         </FormControl>
       </div>
 
-      {/* Sélecteur de tri */}
+      {/* Sorting dropdown (always shown) */}
       <div className="sort-selector">
         <FormControl fullWidth>
-          <InputLabel id="cat-select-label">Choisir un Tri</InputLabel>
+          <InputLabel id="cat-select-label">Trier par</InputLabel>
           <Select
             labelId="cat-select-label"
             id="cat-select"
             value={selectedCat}
-            label="Choisir un Tri"
+            label="Trier par"
             onChange={handleCatSelect}
           >
             {["recent au ancien", "croissante", "decroissante"].map((cat) => (

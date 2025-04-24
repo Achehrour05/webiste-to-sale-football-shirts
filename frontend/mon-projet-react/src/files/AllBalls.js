@@ -1,0 +1,25 @@
+export const ba = {
+  balls: [
+    { id: 80, img: require("../assets/NIKE HERITAGE PREMIER LEAGUE.JPG"), text: "NIKE HERITAGE PREMIER LEAGUE", price: "720 DH", category: "Balls " },
+    { id: 81, img: require("../assets/NIKE PREMIER LEAGUE CLUB ELITE.JPG"), text: "NIKE PREMIER LEAGUE CLUB ELITE", price: "800 DH", category: "Balls " },
+    { id: 82, img: require("../assets/NIKE PREMIER LEAGUE FLIGHT.JPG"), text: "NIKE PREMIER LEAGUE FLIGHT", price: "750 DH", category: "Balls " },
+    { id: 83, img: require("../assets/ADIDAS UEFA CHAMPIONS LEAGUE.JPG"), text: "ADIDAS UEFA CHAMPIONS LEAGUE", price: "700 DH", category: "Balls " },
+    { id: 84, img: require("../assets/ADIDAS UEFA WOMENS CHAMPIONS LEAGUE.JPG"), text: "ADIDAS UEFA WOMENS CHAMPIONS LEAGUE", price: "740 DH", category: "Balls " },
+  ],
+  ALL: [
+    { id: 85, img: require("../assets/NIKE NATIONAL WOMEN'S SOCCER LEAGUE ACADEMY.JPG"), text: "NIKE NATIONAL WOMEN'S SOCCER LEAGUE ACADEMY", price: "600 DH", category: "Balls " },
+    { id: 86, img: require("../assets/NIKE PREMIER LEAGUE CLUB ELITE.JPG"), text: "NIKE PREMIER LEAGUE CLUB ELITE", price: "580 DH", category: "Balls " },
+    { id: 87, img: require("../assets/NIKE PREMIER LEAGUE FLIGHT.JPG"), text: "NIKE PREMIER LEAGUE FLIGHT", price: "550 DH", category: "Balls " },
+    { id: 88, img: require("../assets/ADIDAS UEFA CHAMPIONS LEAGUE KNOCKOUT STAGE.JPG"), text: "ADIDAS UEFA CHAMPIONS LEAGUE KNOCKOUT STAGE", price: "570 DH", category: "Balls " },
+    { id: 89, img: require("../assets/ADIDAS UEFA CHAMPIONS LEAGUE.JPG"), text: "ADIDAS UEFA CHAMPIONS LEAGUE", price: "800 DH", category: "Balls " },
+    { id: 90, img: require("../assets/ADIDAS UEFA WOMENS CHAMPIONS LEAGUE.JPG"), text: "ADIDAS UEFA WOMENS CHAMPIONS LEAGUE", price: "600 DH", category: "Balls " },
+    { id: 91, img: require("../assets/NIKE ACADEMY SOCCER.JPG"), text: "NIKE ACADEMY SOCCER", price: "700 DH", category: "Balls " },
+    { id: 92, img: require("../assets/NIKE PREMIER LEAGUE ACADEMY.JPG"), text: "NIKE PREMIER LEAGUE ACADEMY", price: "830 DH", category: "Balls " },
+    { id: 93, img: require("../assets/NIKE PREMIER LEAGUE HI-VIZ ACADEMY.JPG"), text: "NIKE PREMIER LEAGUE HI-VIZ ACADEMY", price: "630 DH", category: "Balls " },
+    { id: 94, img: require("../assets/NIKE HERITAGE PREMIER LEAGUE.JPG"), text: "NIKE HERITAGE PREMIER LEAGUE", price: "720 DH", category: "Balls " },
+    { id: 95, img: require("../assets/NIKE PREMIER LEAGUE CLUB ELITE.JPG"), text: "NIKE PREMIER LEAGUE CLUB ELITE", price: "800 DH", category: "Balls " },
+    { id: 96, img: require("../assets/NIKE PREMIER LEAGUE FLIGHT.JPG"), text: "NIKE PREMIER LEAGUE FLIGHT", price: "750 DH", category: "Balls " },
+    { id: 97, img: require("../assets/ADIDAS UEFA CHAMPIONS LEAGUE.JPG"), text: "ADIDAS UEFA CHAMPIONS LEAGUE", price: "700 DH", category: "Balls " },
+    { id: 98, img: require("../assets/ADIDAS UEFA WOMENS CHAMPIONS LEAGUE.JPG"), text: "ADIDAS UEFA WOMENS CHAMPIONS LEAGUE", price: "740 DH", category: "Balls " },
+],
+};

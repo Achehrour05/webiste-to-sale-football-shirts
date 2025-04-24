@@ -9,6 +9,7 @@
   import "bootstrap/dist/css/bootstrap.min.css";
   import "bootstrap/dist/js/bootstrap.bundle.min.js";
   import "./Header.css";
+  import { useLocation } from "react-router-dom";
 
   function Header() {
     const navigate = useNavigate();
@@ -22,11 +23,16 @@
       setSearchOpen(!searchOpen);
     };
 
+
+      const location = useLocation();
+    
+      const user_name = location.state?.user_name || "";
+
     return (
       <div className="navbarcontainer">
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container">
-            <a className="contact" href="#">+ Contact Us</a>
+            <a className="contact" href="#">{user_name}</a>
             
             <a 
               className="navbar-brand" 
@@ -155,14 +161,18 @@
                     
                     <h6 className="menu-section-title">Categories</h6>
                     <div className="menu-section">
-                      <a href="#" className="menu-item">
-                        <img src={require("../assets/nike.png")} alt="Nike" />
-                        <span>Nike</span>
+                      <a href="#" className="menu-item" onClick={() => handleButtonClick("/Jackets")}>
+                        <img src={require("../assets/jak.jpg")} alt="Jackets" />
+                        <span>Jackets</span>
                       </a>
                       
-                      <a href="#" className="menu-item">
+                      <a href="#" className="menu-item" onClick={() => handleButtonClick("/Balls")}>
                         <img src={require("../assets/balllogo.png")} alt="Balls" />
                         <span>Balls</span>
+                      </a>
+                      <a href="#" className="menu-item" onClick={() => handleButtonClick("/Boots")}>
+                        <img src={require("../assets/bt.jpg")} alt="Boots" />
+                        <span>Boots</span>
                       </a>
                     </div>
                   </div>

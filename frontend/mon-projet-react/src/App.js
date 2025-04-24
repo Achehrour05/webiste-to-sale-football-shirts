@@ -1,6 +1,7 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import './App.css';
+
 import Header from './files/Header';
 import Middle from './files/Middle';
 import Footer from './files/Footer';
@@ -15,24 +16,50 @@ import France from './files/France';
 import Germain from './files/Germain';
 import Wishlist from './files/Wishlist';
 import { WishlistProvider } from "./files/WishlistContext";
+import Jackets from './files/Jackets';
+import Balls from './files/Balls';
+import Boots from './files/Boots';
 
+// Composant pour scroller en haut à chaque changement de route
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+// Layout avec Header et Footer autour des composants de page
+const Layout = ({ children }) => (
+  <>
+    <Header />
+    <ScrollToTop />
+    {children}
+    <Footer />
+  </>
+);
 
 function App() {
   return (
-    <WishlistProvider> {/* Assure-toi que tout est enveloppé ici */}
+    <WishlistProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<><Header /><Middle /><Footer /></>} />
-          <Route path="/products" element={<><Header /><Shop /><Footer /></>} />
-          <Route path="/registration" element={<><Header /><SignUp /><Footer /></>} />
-          <Route path="/produit/:id" element={<><Header /><Produit /><Footer /></>} />
-          <Route path="/english" element={<><Header /><English /><Footer /></>} />
-          <Route path="/spanish" element={<><Header /><Spanish /><Footer /></>} />
-          <Route path="/france" element={<><Header /><France /><Footer /></>} />
-          <Route path="/italie" element={<><Header /><Italie /><Footer /></>} />
-          <Route path="/other" element={<><Header /><Other /><Footer /></>} />
-          <Route path="/germain" element={<><Header /><Germain /><Footer /></>} />
-          <Route path="/wishlist" element={<><Header /><Wishlist /><Footer /></>} />
+          <Route path="/" element={<Layout><Middle /></Layout>} />
+          <Route path="/products" element={<Layout><Shop /></Layout>} />
+          <Route path="/registration" element={<Layout><SignUp /></Layout>} />
+          <Route path="/produit/:id" element={<Layout><Produit /></Layout>} />
+          <Route path="/english" element={<Layout><English /></Layout>} />
+          <Route path="/spanish" element={<Layout><Spanish /></Layout>} />
+          <Route path="/france" element={<Layout><France /></Layout>} />
+          <Route path="/italie" element={<Layout><Italie /></Layout>} />
+          <Route path="/other" element={<Layout><Other /></Layout>} />
+          <Route path="/Jackets" element={<Layout><Jackets /></Layout>} />
+          <Route path="/Balls" element={<Layout><Balls/></Layout>} />
+          <Route path="/Boots" element={<Layout><Boots/></Layout>} />
+          <Route path="/germain" element={<Layout><Germain /></Layout>} />
+          <Route path="/wishlist" element={<Layout><Wishlist /></Layout>} />
         </Routes>
       </Router>
     </WishlistProvider>

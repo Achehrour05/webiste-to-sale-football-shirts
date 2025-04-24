@@ -1,84 +1,52 @@
 import "./Shop.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { useEffect } from "react";
-import { CiHeart } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
 import { useWishlist } from "./WishlistContext";  // Import the wishlist context
 import Tri from "./Tri";
-const CustomHeart = ({ isActive, onClick }) => (
-  <div
-    style={{
-      width: "24px",
-      cursor: "pointer",
-      color: isActive ? "red" : "gray",
-      transition: "color 0.3s ease",
-    }}
-    onClick={onClick}
-  >
-    {isActive ? "❤️" : <CiHeart/>}
-  </div>
-);
+import CustomHeart from "./Heart"; 
+import { tab } from "./AllKits";  // Import the shared product list
 
-function Spanish() {
+function Germain() {
   const { wishlist, toggleWishlist } = useWishlist();  // Access wishlist and toggle function
-  const [checkedItems, setCheckedItems] = useState(["Chaussures de football","Kits","Balls"]);
+  const [checkedItems, setCheckedItems] = useState(["Chaussures de football", "Kits", "Balls"]);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(3600);
-  const [taille, setTaille] = useState(["taille",38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]);
+  const [taille, setTaille] = useState(["taille", 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]);
   const [selectedSize, setSelectedSize] = useState("Taille");
   const [selectedCat, setSelectedCat] = useState("Tri du plus recent au plus ancien");
-  const [cat, setCat] = useState(["Tri du plus recent au plus ancien","Tri par prix croissante","Tri par prix decroissante"]);
-  const product = [
-    { id: 1, img: require("../assets/modric.jpg"), text: "Real Madrid", price: "800 DH" },
-    { id: 2, img: require("../assets/bilbao.jpg"), text: "Blibao", price: "800 DH" },
-    { id: 3, img: require("../assets/barcelona.jpg"), text: "Barcelona", price: "800 DH" },
-    { id: 4, img: require("../assets/athletico.png"), text: "Athletico Madrid", price: "800 DH" },
-    { id: 5, img: require("../assets/villareal.jpg"), text: "Villareal", price: "800 DH" },
-  ];
+  const [cat, setCat] = useState(["Tri du plus recent au plus ancien", "Tri par prix croissante", "Tri par prix decroissante"]);
+  const [products, setProducts] = useState(tab.germain);  // Use the shared product list for Germain
 
-  
   const handleMinPriceChange = (e) => {
     setMinPrice(Number(e.target.value));
-  }
+  };
+
   const handleMaxPriceChange = (e) => setMaxPrice(Number(e.target.value));
 
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
   };
 
-  const [products, setProducts] = useState(product);
   const handleCatSelect = (cat) => {
     setSelectedCat(cat);
 
     if (cat === "Tri par prix croissante") {
-        setProducts([...product].sort((a, b) => 
-            parseInt(a.price) - parseInt(b.price)
-        )) 
-    } 
-    else if (cat === "Tri par prix decroissante") {
-      setProducts([...product].sort((a, b) => 
-        parseInt(b.price) - parseInt(a.price)
-    )) 
-    } 
-    else{
-      setProducts(product)
+      setProducts([...tab.spanish].sort((a, b) => parseInt(a.price) - parseInt(b.price)));
+    } else if (cat === "Tri par prix decroissante") {
+      setProducts([...tab.spanish].sort((a, b) => parseInt(b.price) - parseInt(a.price)));
+    } else {
+      setProducts(tab.spanish);
     }
-  
-};
+  };
 
-
-useEffect(() => {
-  setProducts(product.filter(item => parseInt(item.price) >= minPrice && parseInt(item.price) <= maxPrice));
-}, [minPrice, maxPrice]);
-
-
-
+  useEffect(() => {
+    setProducts(tab.spanish.filter(item => parseInt(item.price) >= minPrice && parseInt(item.price) <= maxPrice));
+  }, [minPrice, maxPrice]);
 
   const navigate = useNavigate();
   const handleItemClick = (productId, productImg, productText, productPrice) => {
-    // Vérifiez que vous passez bien tous les paramètres
     navigate(`/produit/${productId}`, { 
       state: { 
         img: productImg, 
@@ -88,16 +56,14 @@ useEffect(() => {
     });
   };
 
-  const sortedByPriceCroi = [...product].sort((a, b) => 
-    parseInt(a.price) - parseInt(b.price)
-);
-const handleSortChange = (sortedProducts) => {
-  setProducts(sortedProducts);
-};
+  const handleSortChange = (sortedProducts) => {
+    setProducts(sortedProducts);
+  };
+
   return (
     <div className="containerr">
-      <divddddd className="left">
-      <Tri
+      <div className="left">
+        <Tri
           item={products}
           onSortChange={handleSortChange}
           minPrice={minPrice}
@@ -105,16 +71,16 @@ const handleSortChange = (sortedProducts) => {
           setMinPrice={setMinPrice}
           setMaxPrice={setMaxPrice}
         />
-      </divddddd>
+      </div>
       <div className="right">
         <div className="product">
           {products.map((kit) => (
-            <div key={kit.id} className="scroll-item eme" >
-              <img src={kit.img} alt={kit.text}  onClick={() => handleItemClick(kit.id, kit.img, kit.text, kit.price)}/>
-              <p className="descrip"  onClick={() => handleItemClick(kit.id, kit.img, kit.text, kit.price)}>{kit.text} </p>
+            <div key={kit.id} className="scroll-item eme">
+              <img src={kit.img} alt={kit.text} onClick={() => handleItemClick(kit.id, kit.img, kit.text, kit.price)} />
+              <p className="descrip" onClick={() => handleItemClick(kit.id, kit.img, kit.text, kit.price)}>{kit.text}</p>
               <div className="productinput">
-              <button className="button"><span className="p">Choix des option</span></button>
-              <div style={{ width: "2rem" }}>
+                <button className="button"><span className="p">Choix des options</span></button>
+                <div style={{ width: "2rem" }} className="heart">
                   <CustomHeart
                     isActive={wishlist.some((p) => p.id === kit.id)}
                     onClick={() => toggleWishlist(kit)}
@@ -123,10 +89,10 @@ const handleSortChange = (sortedProducts) => {
               </div>
             </div>
           ))}
-      </div>
+        </div>
       </div>
     </div>
   );
 }
 
-export default Spanish;
+export default Germain;

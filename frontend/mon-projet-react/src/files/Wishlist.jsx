@@ -2,21 +2,21 @@ import React from "react";
 import { useWishlist } from "./WishlistContext";
 import "./Wishlist.css"
 import { useNavigate } from 'react-router-dom';
+
 const Wishlist = () => {
   const { wishlist } = useWishlist();
 
+  const navigate = useNavigate();
+  const handleItemClick = (productId, productImg, productText, productPrice) => {
+    navigate(`/produit/${productId}`, { 
+      state: { 
+        img: productImg, 
+        text: productText, 
+        price: productPrice 
+      } 
+    });
+  };
 
-
-    const navigate = useNavigate();
-    const handleItemClick = (productId, productImg, productText, productPrice) => {
-      navigate(`/produit/${productId}`, { 
-        state: { 
-          img: productImg, 
-          text: productText, 
-          price: productPrice 
-        } 
-      });
-    };
   return (
     <div className="wishlist-container">
       <h2>Your Wishlist</h2>

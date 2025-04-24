@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,11 +11,12 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
+import { useNavigate } from 'react-router-dom';
 
 // Composant réutilisable pour le sélecteur de taille
 const SizeSelector = ({ sizes, selectedSize, onSizeChange }) => {
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth className="margin-bottom">
       <InputLabel id="size-select-label">Taille</InputLabel>
       <Select
         labelId="size-select-label"
@@ -37,7 +38,7 @@ const SizeSelector = ({ sizes, selectedSize, onSizeChange }) => {
 // Composant réutilisable pour les options de personnalisation
 const CustomizationOptions = ({ customizationOption, onCustomizationChange }) => {
   return (
-    <FormControl>
+    <FormControl className="margin-bottom">
       <FormLabel id="customization-radio-buttons-group-label">
         Options de personnalisation
       </FormLabel>
@@ -66,7 +67,7 @@ const CustomizationOptions = ({ customizationOption, onCustomizationChange }) =>
 // Composant réutilisable pour l'upload de fichier
 const FileUpload = ({ onFileChange }) => {
   return (
-    <div>
+    <div className="margin-bottom">
       <p>Insérer le logo ou emoji</p>
       <input type="file" onChange={onFileChange} />
     </div>
@@ -75,8 +76,22 @@ const FileUpload = ({ onFileChange }) => {
 
 // Composant principal
 function Produit() {
-  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
+  const navigate = useNavigate();
+  const handleItemClick = (productImg, productText, productPrice) => {
+    navigate(`/pay/`, { 
+      state: { 
+        img: productImg, 
+        text: productText, 
+        price: productPrice 
+      } 
+    });
+  };
+
+  const location = useLocation();
   const productImage = location.state?.img || "";
   const productText = location.state?.text || "Produit Inconnu";
   const productPrice = location.state?.price || "Prix non disponible";
@@ -103,20 +118,16 @@ function Produit() {
   }, []);
 
   return (
-    <div className="produitContainer">
-      <div className="lefts">
-        <Carousel interval={3000}>
-          <Carousel.Item>
-            <img className="d-block w-100" src={productImage} alt="Main Product" />
-          </Carousel.Item>
-        </Carousel>
+    <div className="product-container">
+      <div className="product-image-section">
+        <img className="d-block w-100" src={productImage} alt="Main Product" />
       </div>
 
-      <div className="rights">
-        <p className="maintaitle">{productText}</p>
-        <p className="prix">{productPrice}</p>
+      <div className="product-details-section">
+        <p className="product-title">{productText}</p>
+        <p className="product-price">{productPrice}</p>
 
-        <div className="dropdown marg">
+        <div className="size-selector-container">
           <SizeSelector
             sizes={sizes}
             selectedSize={selectedSize}
@@ -124,7 +135,7 @@ function Produit() {
           />
         </div>
 
-        <p className="maintaitle">Rendez-le Unique !</p>
+        <p className="product-title">Rendez-le Unique !</p>
         <p>Personnalisation disponible (Préparation sous 24 à 48 heures).</p>
 
         <CustomizationOptions
@@ -137,7 +148,7 @@ function Produit() {
             <p>Entrer le nom + le numéro</p>
             <input
               type="text"
-              className="inputbarre"
+              className="customization-input"
               placeholder="Ex: Cristiano 7"
               value={nameNumber}
               onChange={(e) => setNameNumber(e.target.value)}
@@ -145,16 +156,22 @@ function Produit() {
             {customizationOption !== "nomNumero" && (
               <FileUpload onFileChange={handleFileChange} />
             )}
-            <p>Quantité</p>
-            <input
-              type="number"
-              value={quantity}
-              onChange={handleQuantityChange}
-              min="1"
-            />
-            <button className="ajout">Ajouter au panier</button>
           </>
         )}
+        <p>Quantité</p>
+        <input
+          type="number"
+          value={quantity}
+          onChange={handleQuantityChange}
+          min="1"
+          className="customization-input"
+        />
+        <button 
+          className="add-to-cart-button" 
+          onClick={() => handleItemClick(productImage, productText, productPrice)}
+        >
+          Ajouter au panier
+        </button>
       </div>
     </div>
   );

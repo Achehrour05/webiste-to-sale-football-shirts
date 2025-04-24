@@ -13,7 +13,6 @@ body {
     padding: 20px;
     position: sticky;
     top: 0;
-    height: 100vh;
     overflow-y: auto;
 }
 
@@ -257,4 +256,50 @@ body {
   .heart {
     font-size: 24px;
     cursor: pointer;
+  }
+
+  .heart{
+    margin-bottom: 20px;
+  }
+  
+  .product {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .scroll-item {
+    width: 200px;
+    text-align: center;
+  }
+  
+  .scroll-item img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .descrip {
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+  }
+  
+  .productinput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
   }
