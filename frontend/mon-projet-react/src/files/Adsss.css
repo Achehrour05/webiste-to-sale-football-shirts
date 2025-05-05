@@ -1,0 +1,12 @@
+/* Add this to your global CSS file like index.css or App.css */
+.scrollbar-hide {
+    /* For Firefox */
+    scrollbar-width: none;
+    /* For Internet Explorer and Edge (older versions) */
+    -ms-overflow-style: none;
+  }
+  
+  /* For Chrome, Safari, and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }

@@ -1,6 +1,8 @@
+// Caroousel.js
 import React from 'react';
 import { Carousel } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
+import './Caroosel.css'; // <--- IMPORT YOUR CSS FILE HERE
 
 function Caroousel({ handleItemClick }) {
   const navigate = useNavigate();
@@ -13,30 +15,30 @@ function Caroousel({ handleItemClick }) {
 
   // Carousel slides configuration
   const carouselSlides = [
-    { 
-      img: require("../assets/cr7.jpg"), 
-      title: "Get Your New Real Madrid Kit", 
+    {
+      img: require("../assets/cr7.jpg"),
+      title: "Get Your New Real Madrid Kit",
       subtitle: "Just for the original madridistas",
       type: "product",
       productId: 26 // Links to first item in carouselItems
     },
-    { 
-      img: require("../assets/messi.jpg"), 
-      title: "Barcelona X Nike 15/16 Shirt", 
+    {
+      img: require("../assets/messi.jpg"),
+      title: "Barcelona X Nike 15/16 Shirt",
       subtitle: "Shop the full collection",
       type: "product",
       productId: 28 // Links to second item in carouselItems
     },
-    { 
-      img: require("../assets/eq.jpg"), 
-      title: "Champions League Adidas 11/12", 
+    {
+      img: require("../assets/eq.jpg"),
+      title: "Champions League Adidas 11/12",
       subtitle: "Limited edition design",
       type: "link",
       url: "./Balls" // Custom URL
     },
-    { 
-      img: require("../assets/boot.jpg"), 
-      title: "Premium Football Boots", 
+    {
+      img: require("../assets/boot.jpg"),
+      title: "Premium Football Boots",
       subtitle: "Performance meets style",
       type: "link",
       url: "./Boots" // Custom URL
@@ -48,9 +50,9 @@ function Caroousel({ handleItemClick }) {
       const product = carouselItems.find(item => item.id === slide.productId);
       if (product) {
         handleItemClick(
-          product.id, 
-          product.img, 
-          product.text, 
+          product.id,
+          product.img,
+          product.text,
           product.price
         );
       }
@@ -66,7 +68,7 @@ function Caroousel({ handleItemClick }) {
       fade
       indicators={false}
       controls={false}
-      className="main-carousel"
+      className="main-carousel" // This class is targeted by the CSS
     >
       {carouselSlides.map((slide, index) => (
         <Carousel.Item key={index} className="carousel-item">
@@ -75,11 +77,11 @@ function Caroousel({ handleItemClick }) {
             <div className="sponsor-badge">QATAR AIRWAYS</div>
             <h3>{slide.title}</h3>
             <p className="carousel-subtitle">{slide.subtitle}</p>
-            
-            <button 
+
+            <button
               className="shop-button"
               onClick={(e) => {
-                e.stopPropagation();
+                e.stopPropagation(); // Good practice to keep if needed elsewhere
                 handleButtonClick(slide);
               }}
             >

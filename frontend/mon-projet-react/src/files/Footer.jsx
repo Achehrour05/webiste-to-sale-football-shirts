@@ -1,82 +1,102 @@
-import React from "react";
-import "./Footer.css";
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
+import React from 'react';
+import './Footer.css'; // We'll create this CSS file next
+import { FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 
-function Footer() {
+const Footer = () => {
   return (
-    <footer className="footer-section">
-      <div className="footer-container">
-        <div className="footer-content">
-          
-          {/* About Section */}
-          <div className="footer-about">
-            <h5 className="footer-heading">SportAchehrour PRO!</h5>
-            <p className="footer-text">
-              Votre destination numéro un pour tout l’équipement de football.
-              Chaussures, gants de gardien, et bien plus.
-            </p>
-
-            <div className="footer-contact">
-              <p className="contact-info">📞 <strong>+212 679 165 767</strong></p>
-              <p className="contact-text">Un conseiller est à votre disposition.</p>
-              <p className="contact-email">✉️ <a href="mailto:abdessamadachehrour@gmail.com">abdessamadachehrour@gmail.com</a></p>
-            </div>
-
-            <div className="footer-social">
-              <a href="#" aria-label="Facebook"><FaFacebook /></a>
-              <a href="#" aria-label="Instagram"><FaInstagram /></a>
-              <a href="#" aria-label="LinkedIn"><FaLinkedin /></a>
-              <a href="#" aria-label="GitHub"><FaGithub /></a>
-            </div>
-          </div>
-
-          {/* Quick Links Section */}
-          <div className="footer-links">
-            <h5 className="footer-heading">Liens importants</h5>
-            <ul className="footer-nav">
-              <li><a href="#">Boutique en ligne</a></li>
-              <li><a href="#">Nos Magazins</a></li>
-              <li><a href="#">Notre Histoire</a></li>
-              <li><a href="#">Blog</a></li>
-            </ul>
-          </div>
-
-          {/* Categories Section */}
-          <div className="footer-links">
-            <h5 className="footer-heading">Nos Catégories</h5>
-            <ul className="footer-nav">
-              <li><a href="#">Chaussures de football</a></li>
-              <li><a href="#">Équipements de football</a></li>
-              <li><a href="#">Gants gardiens</a></li>
-              <li><a href="#">Espace Enfants</a></li>
-              <li><a href="#">Fans</a></li>
-            </ul>
-          </div>
-
-          {/* Legal Section */}
-          <div className="footer-links">
-            <h5 className="footer-heading">Termes et conditions</h5>
-            <ul className="footer-nav">
-              <li><a href="#">Conditions Générales d’Utilisation et de Vente</a></li>
-              <li><a href="#">Politique de Confidentialité et de Cookies</a></li>
-              <li><a href="#">Politique de Retours et Remboursements</a></li>
-            </ul>
-          </div>
-          
+    <footer className="site-footer">
+      <div className="footer-content">
+        {/* Column 1: Produits */}
+        <div className="footer-column">
+          <h3 className="footer-heading">PRODUITS</h3>
+          <ul className="footer-links">
+            <li><a href="#">Chaussures</a></li>
+            <li><a href="#">Vêtements</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
         </div>
 
-        {/* Footer Bottom Section */}
-        <div className="footer-bottom">
-          <p className="footer-copyright">Copyright 2024 © Sport Achehrour PRO. Tous droits réservés.</p>
-          <div className="footer-payment">
-            <img src={require("../assets/cmi.jpg")} alt="CMI" />
-            <img src={require("../assets/mastercard.jpg")} alt="MasterCard" />
-            <img src={require("../assets/paypal.jpg")} alt="Paypal" />
+        {/* Column 2: Sports */}
+        <div className="footer-column">
+          <h3 className="footer-heading">SPORTS</h3>
+          <ul className="footer-links">
+            <li><a href="#">Running</a></li>
+            <li><a href="#">Basketball</a></li>
+            <li><a href="#">Football</a></li>
+            <li><a href="#">Yoga</a></li>
+            <li><a href="#">Outdoor</a></li>
+            <li><a href="#">Tennis</a></li>
+            <li><a href="#">Training</a></li>
+          </ul>
+        </div>
+
+        {/* Column 3: Catégorie */}
+        <div className="footer-column">
+          <h3 className="footer-heading">CATÉGORIE</h3>
+          <ul className="footer-links">
+            <li><a href="#">Hommes</a></li>
+            <li><a href="#">Femmes</a></li>
+            <li><a href="#">Enfants</a></li>
+            <li><a href="#">Outlet</a></li>
+          </ul>
+        </div>
+
+        {/* Column 4: Information sur la société */}
+        <div className="footer-column">
+          <h3 className="footer-heading">INFORMATION SUR LA SOCIETE</h3>
+          <ul className="footer-links">
+            <li><a href="#">Qui sommes nous ?</a></li>
+            <li><a href="#">Emploi</a></li>
+            <li><a href="#">Presse</a></li>
+            <li><a href="#">adiClub</a></li>
+          </ul>
+        </div>
+
+        {/* Column 5: Assistance */}
+        <div className="footer-column">
+          <h3 className="footer-heading">ASSISTANCE</h3>
+          <ul className="footer-links">
+            <li><a href="#">Aide</a></li>
+            <li><a href="#">Livraison</a></li>
+            <li><a href="#">Retours</a></li>
+            <li><a href="#">Suivi de commande</a></li>
+            <li><a href="#">adiClub & Newsletter</a></li>
+            <li><a href="#">Cartes cadeau</a></li>
+            <li><a href="#">Tableaux des tailles</a></li>
+            <li><a href="#">Nous contacter</a></li>
+            <li><a href="#">Trouver un magasin</a></li>
+          </ul>
+        </div>
+
+        {/* Column 6: Suivez-nous */}
+        <div className="footer-column">
+          <h3 className="footer-heading">SUIVEZ-NOUS</h3>
+          <div className="social-icons">
+            <a href="#" aria-label="Facebook"><FaFacebookF /></a>
+            <a href="#" aria-label="Instagram"><FaInstagram /></a>
+            <a href="#" aria-label="YouTube"><FaYoutube /></a>
           </div>
         </div>
       </div>
+
+      {/* Bottom Bar */}
+      <div className="footer-bottom">
+        <a href="#">Paramètres de données</a>
+        <span className="footer-separator">|</span>
+        <a href="#" className="country-link">
+          <span role="img" aria-label="Morocco Flag">🇲🇦</span> Morocco
+        </a>
+        <span className="footer-separator">|</span>
+        <a href="#">Paramètres des cookies</a>
+        <span className="footer-separator">|</span>
+        <a href="#">Politique de protection des données personnelles</a>
+        <span className="footer-separator">|</span>
+        <a href="#">Conditions générales</a>
+        <span className="footer-separator">|</span>
+        <a href="#">Mentions légales</a>
+      </div>
     </footer>
   );
-}
+};
 
 export default Footer;

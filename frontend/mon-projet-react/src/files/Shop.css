@@ -1,305 +1,47 @@
-body {
-    color: black;
+/* src/pages/Shop.css */
+
+/* Keep only essential styles not easily done with Tailwind or base overrides */
+
+/* --- Optional: Custom Scrollbar for Sidebar --- */
+/* You can style the scrollbar for the sticky sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
 }
 
-.containerr {
-    display: flex;
-    margin-top: 150px;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background for the track */
+  border-radius: 3px;
 }
 
-.left {
-    width: 30%;
-    padding: 20px;
-    position: sticky;
-    top: 0;
-    overflow-y: auto;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cccccc; /* Color of the draggable scroll handle */
+  border-radius: 3px;
 }
 
-.right {
-    width: 70%;
-    padding: 20px;
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #aaaaaa; /* Darker handle on hover */
 }
 
-.categories {
-    margin-bottom: 50px;
+/* --- Utility if not using a Tailwind plugin --- */
+/* Can be placed in index.css or App.css as well */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
-.input {
-    display: flex;
-    gap: 20px;
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
 
-.input input {
-    width: 65px;
-    height: 40px;
-    background-color: rgb(213, 213, 213);
-    border: none;
-}
-
-.change {
-    width: 100px;
-}
-
-.btn1 {
-    border: 1px solid black;
-    border-radius: 0px;
-    width: 90%;
-}
-
-.btn2 {
-    font-size: 10px;
-}
-
-.product {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px; /* Add gap between items */
-}
-
-.button {
-    width: 60%;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: red;
-}
-
-.p {
-    font-size: 12px;
-}
-
-.productinput {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.heart {
-    margin-bottom: 25px;
-    font-size: 25px;
-}
-
-.heart:hover {
-    color: red;
-    cursor: pointer;
-}
-
-.eme p {
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.marg {
-    margin-bottom: 50px;
-}
-
-.descrip{
-    cursor: pointer;
-}
-
-/* Heart component styling */
-.react-heart {
-    transition: all 0.3s ease;
-  }
-  
-  .react-heart:hover {
-    transform: scale(1.1);
-  }
-  
-  /* If you need to override default colors */
-  .react-heart path:first-child {
-    stroke: #666 !important;
-  }
-  
-  .react-heart.active path:first-child {
-    stroke: #ff0000 !important;
-    fill: #ff0000 !important;
-  }
-  .react-heart {
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .react-heart:hover {
-    transform: scale(1.1);
-  }
-/* Media Queries for Responsiveness */
-
-@media (max-width: 1024px) {
-    .left {
-        width: 100%; /* Full width on tablets and smaller screens */
-        position: static; /* Remove sticky on smaller screens */
-        height: auto; /* Auto height */
-        overflow-y: visible; /* No overflow */
-    }
-
-    .right {
-        width: 100%; /* Full width on tablets and smaller screens */
-    }
-
-
-    .btn1 {
-        width: 50%;
-    }
-    .btn2 {
-        font-size: 20px;
-    }
-   
-}
-
-@media (max-width: 480px) {
-    .input {
-        flex-direction: column; /* Stack input fields vertically on very small screens */
-    }
-
-    .input input {
-        width: 100%; /* Full width inputs on very small screens */
-    }
-
-    .button {
-        width: 100%; /* Full width button on very small screens */
-    }
-
-    .productinput {
-        flex-direction: column; /* Stack button and heart icon vertically */
-        gap: 10px;
-    }
-
-    .heart {
-        margin-bottom: 10px;
-    }
-    .btn1 {
-        width: 90%;
-    }
-}
-.containerr {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .left {
-    display: flex;
-    flex-direction: column; /* Tout en une seule colonne */
-    gap: 20px; /* Espacement entre les éléments */
-    width: 300px; /* Largeur fixe pour la colonne de gauche */
-  }
-  
-  .right {
-    flex: 1; /* Prend tout l'espace restant */
-  }
-  
-  .categories, .price-filter, .size-selector, .sort-selector {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .slider-container {
-    margin-top: 15px;
-  }
-  
-  .product {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .scroll-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .scroll-item img {
-    max-width: 100%;
-    border-radius: 8px;
-  }
-  
-  .descrip {
-    font-size: 16px;
-    margin: 10px 0;
-  }
-  
-  .productinput {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .heart {
-    font-size: 24px;
-    cursor: pointer;
-  }
-
-  .heart{
-    margin-bottom: 20px;
-  }
-  
-  .product {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .scroll-item {
-    width: 200px;
-    text-align: center;
-  }
-  
-  .scroll-item img {
-    width: 100%;
-    height: auto;
-    cursor: pointer;
-  }
-  
-  .descrip {
-    font-size: 16px;
-    margin: 10px 0;
-    cursor: pointer;
-  }
-  
-  .productinput {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .button:hover {
-    background-color: #0056b3;
-  }
+/* --- Deprecated Rules from previous versions (Example - Remove these) --- */
+/*
+.containerr { ... remove ... }
+.left { ... remove ... }
+.right { ... remove ... }
+.input { ... remove ... }
+.input input { ... remove ... }
+.product { ... remove unless for specific non-grid overrides ... }
+.eme { ... remove ... }
+.button { ... remove ... }
+.productinput { ... remove ... }
+*/

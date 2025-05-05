@@ -1,0 +1,32 @@
+/* src/components/FullWidthVideo.css */
+
+.full-width-video-container {
+    width: 100%;       /* Ensures container uses available width */
+    line-height: 0;    /* Prevents extra space below the video element */
+    font-size: 0;      /* Another way to prevent extra space */
+    position: relative; /* Allows absolute positioning inside if needed later */
+    /* Add other container styles here if necessary, e.g., margins: */
+    /* margin: 1rem 0; */
+  }
+  
+  .full-width-video {
+    display: block; /* Remove potential bottom spacing of inline elements */
+    width: 100%;    /* Make video fill the container width */
+    height: auto;   /* Allow height to adjust based on aspect ratio */
+    max-width: 100%; /* Prevents video from exceeding container width */
+    /* object-fit: cover; */ /* Uncomment if you use a fixed height and want the video to cover */
+  }
+  
+  /* Optional: Style the controls (basic example, styling varies greatly by browser) */
+  /* Note: Deeply styling native controls is limited and inconsistent */
+  /* For custom controls, you'd hide native controls and build your own UI */
+  /*
+  .full-width-video::-webkit-media-controls-panel {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .full-width-video::-webkit-media-controls-play-button {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+  }
+  */

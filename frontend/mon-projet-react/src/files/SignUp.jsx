@@ -1,102 +1,42 @@
-import './Signupcss.css';
-import React, { useState, useRef } from 'react';
-import Images from './Images';
-import { useNavigate } from 'react-router-dom';
+// src/ContactForm.js
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function SignUp() {
-    let [name, setName] = useState('Sign Up');
-    let id = useRef(null);
-    let [change, setChange] = useState({
-        name: '',
-        email: '',
-        password: ''
-    });
+function ContactForm() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [response, setResponse] = useState(null);
 
-    const navigate = useNavigate();
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-    function handleSignUp() {
-        setName('Sign Up');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:8000/api/contact', form);
+      setResponse(res.data.message);
+    } catch (err) {
+      if (err.response?.data?.errors) {
+        setResponse('Validation failed.');
+        console.log(err.response.data.errors);
+      } else {
+        setResponse('Something went wrong.');
+      }
     }
+  };
 
-    function handleLogin() {
-        setName('Login');
-    }
-
-    function handle(e) {
-        const { name, value } = e.target;
-        setChange({ ...change, [name]: value });
-    }
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        const data = {
-            name: change.name,
-            email: change.email,
-            password: change.password
-        };
-
-        try {
-            const endpoint = name === 'Sign Up'
-                ? 'http://localhost:5000/registration/signup'
-                : 'http://localhost:5000/registration/login';
-
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch, server may be down or CORS issue');
-            }
-
-            const responseData = await response.json();
-            console.log('Response from backend:', responseData);
-
-            if (name === 'Login' && responseData.accessToken) {
-                localStorage.setItem('token', responseData.accessToken);
-                navigate(`/`, {
-                    state: { user_name: responseData.user_name }
-                });
-            } else if (name === 'Sign Up') {
-                alert('Signup successful! Please log in.');
-                setName('Login');
-            }
-        } catch (error) {
-            console.error('Error in fetch:', error);
-            alert(error.message || 'An error occurred. Please try again.');
-        }
-    }
-
-    return (
-        <div className='body'>
-            <div className='signupcontainer' ref={id}>
-                <h2>{name}</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className='inputcontainer'>
-                        {name === 'Sign Up' && (
-                            <input type='text' placeholder='Name' name='name' onChange={handle} required />
-                        )}
-                        <input type='email' name='email' placeholder='Email' onChange={handle} required />
-                        <input type='password' name='password' placeholder='Password' onChange={handle} required />
-                    </div>
-                    <div className='buttoncontainerr'>
-                        <button type='submit' className='n'>Submit</button>
-                    </div>
-                </form>
-            </div>
-            <div className='cont'>
-                <Images />
-                <div className='bt'>
-                    <button type='button' className='n' onClick={handleSignUp}>Sign Up</button>
-                    <button type='button' className='n' onClick={handleLogin}>Login</button>
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <h2>Contact Form</h2>
+      {response && <p>{response}</p>}
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Name" required /><br />
+        <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required /><br />
+        <textarea name="message" value={form.message} onChange={handleChange} placeholder="Message" required></textarea><br />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  );
 }
 
-export default SignUp;
+export default ContactForm;

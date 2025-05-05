@@ -1,0 +1,185 @@
+/* Ensure carousel takes up space and removes bootstrap rounding */
+.main-carousel {
+    border-radius: 0 !important; /* Force no rounded corners */
+    overflow: hidden; /* Ensure images don't overflow */
+    max-height: 70vh; /* Limit height, adjust as needed */
+    min-height: 400px; /* Minimum height */
+  }
+  
+  /* Style individual slide item container */
+  .carousel-slide-item {
+    border-radius: 0 !important;
+    height: 100%;
+     max-height: 70vh; /* Match carousel height */
+     min-height: 400px;
+  }
+  
+  /* Style the image itself */
+  .carousel-slide-image {
+    border-radius: 0 !important; /* Force no rounded corners on image */
+    object-fit: cover; /* Cover the area, might crop */
+    object-position: center center; /* Center the image */
+    height: 100%;
+     max-height: 70vh; /* Match carousel height */
+     min-height: 400px;
+  }
+  
+  /* Enhanced Caption Styling */
+  .carousel-caption-enhanced {
+    /* Override bootstrap defaults */
+    position: absolute;
+    right: 0;
+    bottom: 0; /* Position at the bottom */
+    left: 0;
+    padding: 0; /* Remove default padding */
+    text-align: left; /* Align text to the left */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%); /* Gradient overlay for readability */
+    border-radius: 0 !important; /* Ensure no rounded corners */
+    width: 100%; /* Full width */
+    color: #fff; /* White text */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Subtle text shadow */
+  }
+  
+  /* Inner container for padding and alignment */
+  .caption-content {
+    padding: 2rem 3rem; /* Generous padding inside the caption area */
+  }
+  
+  /* Sponsor Badge Styling */
+  .sponsor-badge-enhanced {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    color: #333; /* Dark text */
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0; /* No rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  /* Title Styling */
+  .carousel-title-enhanced {
+    font-size: 2.5rem; /* Larger title */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  
+  /* Subtitle Styling */
+  .carousel-subtitle-enhanced {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem; /* Space before button */
+    font-weight: 300;
+  }
+  
+  /* Enhanced Shop Button Styling */
+  .shop-button-enhanced {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    border-radius: 0; /* No rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .shop-button-enhanced:hover {
+    background-color: #dddddd; /* Slightly darker on hover */
+    color: #000000;
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+  
+  .shop-button-enhanced:active {
+     transform: translateY(0px); /* Button press effect */
+     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  /* Customize Controls and Indicators if desired (optional) */
+  .main-carousel .carousel-control-prev-icon,
+  .main-carousel .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Make controls slightly more visible */
+    border-radius: 50%; /* Keep controls rounded if you like */
+    padding: 15px; /* Increase clickable area */
+  }
+  
+  .main-carousel .carousel-indicators [data-bs-target] {
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white indicators */
+    width: 12px;
+    height: 12px;
+    border-radius: 50%; /* Round indicators */
+    margin: 0 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  .main-carousel .carousel-indicators .active {
+    background-color: #fff; /* Solid white for active indicator */
+  }
+  
+  
+  /* Responsive Adjustments (Example for smaller screens) */
+  @media (max-width: 768px) {
+    .main-carousel,
+    .carousel-slide-item,
+    .carousel-slide-image {
+      max-height: 50vh;
+      min-height: 300px;
+    }
+  
+    .caption-content {
+       padding: 1.5rem; /* Less padding on smaller screens */
+    }
+  
+    .carousel-title-enhanced {
+      font-size: 1.8rem; /* Smaller title */
+    }
+  
+    .carousel-subtitle-enhanced {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+  
+    .shop-button-enhanced {
+      padding: 0.6rem 1.5rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+      .caption-content {
+          padding: 1rem;
+      }
+       .carousel-title-enhanced {
+          font-size: 1.5rem;
+      }
+      .carousel-subtitle-enhanced {
+          display: none; /* Optionally hide subtitle on very small screens */
+      }
+       .shop-button-enhanced {
+          padding: 0.5rem 1rem;
+          font-size: 0.8rem;
+      }
+       .sponsor-badge-enhanced {
+          font-size: 0.65rem;
+          padding: 0.2rem 0.5rem;
+          margin-bottom: 0.5rem;
+      }
+  }
+  /* Caroousel.css (or your main CSS file) */
+
+.main-carousel {
+    border-radius: 0 !important; /* Remove rounded corners from the main container */
+    overflow: hidden; /* Ensure content respects the container bounds */
+  }
+  
+  /* Optional: Ensure images inside also have sharp corners if needed */
+  .main-carousel .carousel-item img {
+    border-radius: 0 !important; 
+  }

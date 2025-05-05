@@ -1,180 +1,204 @@
-import React, { useState, useEffect } from "react";
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Checkbox,
-  FormControlLabel,
-} from "@mui/material";
+// src/components/Tri.jsx
+
+import React, { useState, useEffect, useMemo } from "react";
 import Slider from 'rc-slider';
+import debounce from 'lodash.debounce';
 import 'rc-slider/assets/index.css';
+import './Tri.css'; // Styles specific to Tri (slider, checkbox overrides)
 
-function Tri({ 
-  item, 
-  onSortChange, 
-  minPrice, 
-  maxPrice, 
-  setMinPrice, 
-  setMaxPrice,
-  checkedItems = [],       // Optional (for categories)
-  setCheckedItems = () => {},  // Optional (for categories)
-  categories = []         // Optional (if empty, hides category filter)
+// Define SORT OPTIONS constants for clarity and maintainability
+export const SORT_OPTIONS = {
+    RECENT: 'recent',      // Consider if you have a 'dateAdded' property for this
+    PRICE_ASC: 'price_asc',
+    PRICE_DESC: 'price_desc',
+};
+
+// Define Default/Placeholder Size Options
+const DEFAULT_SIZE_OPTIONS = ["Taille", "S", "M", "L", "XL", 38, 39, 40, 41, 42, 43, 44, 45];
+
+
+function Tri({
+  // Filter Options (data to display choices)
+  categories = [],
+  availableSizes = DEFAULT_SIZE_OPTIONS, // Allow overriding default sizes
+  minPriceLimit = 0,
+  maxPriceLimit = 3000,
+
+  // Current Selections (controlled by parent)
+  selectedCategories = [],
+  selectedSize = "Taille",
+  selectedSort = SORT_OPTIONS.RECENT,
+  currentMinPrice = minPriceLimit,
+  currentMaxPrice = maxPriceLimit,
+
+  // Callback Functions (notify parent of changes)
+  onCategoryChange = () => {},
+  onSizeChange = () => {},
+  onSortChange = () => {},
+  onPriceChange = () => {},
 }) {
-  const [value, setValue] = useState([minPrice, maxPrice]);
-  const [selectedSize, setSelectedSize] = useState("Taille");
-  const [selectedCat, setSelectedCat] = useState("recent au ancien");
 
-  // Update slider when min/max price changes
-  useEffect(() => {
-    setValue([minPrice, maxPrice]);
-  }, [minPrice, maxPrice]);
+  // --- Internal State for delayed updates (avoids rapid callbacks) ---
+  const [internalMinPrice, setInternalMinPrice] = useState(currentMinPrice);
+  const [internalMaxPrice, setInternalMaxPrice] = useState(currentMaxPrice);
 
-  // Price range slider handler
-  const handleSliderChange = (newValue) => {
-    setValue(newValue);
-    setMinPrice(newValue[0]);
-    setMaxPrice(newValue[1]);
+  // Keep internal state synced with props if parent updates them externally
+  useEffect(() => { setInternalMinPrice(currentMinPrice); }, [currentMinPrice]);
+  useEffect(() => { setInternalMaxPrice(currentMaxPrice); }, [currentMaxPrice]);
+
+  // --- Debounced Handler for Price Changes ---
+  const debouncedPriceHandler = useMemo(
+    () => debounce((min, max) => {
+      onPriceChange({ min, max }); // Call parent only after debounce time
+    }, 500), // 500ms delay
+    [onPriceChange] // Only recreate if the callback prop itself changes
+  );
+
+  // --- Event Handlers ---
+  const handleCategoryToggle = (category) => {
+    const newSelection = selectedCategories.includes(category)
+      ? selectedCategories.filter(item => item !== category)
+      : [...selectedCategories, category];
+    onCategoryChange(newSelection);
   };
 
-  // Input field handlers for min/max price
-  const handleMinPriceChange = (e) => {
-    const newMinPrice = Math.max(0, Math.min(Number(e.target.value), maxPrice));
-    setMinPrice(newMinPrice);
-    setValue([newMinPrice, maxPrice]);
+  const handlePriceSliderChange = (newValue) => {
+    const [newMin, newMax] = newValue;
+    // Update internal state immediately for responsiveness
+    setInternalMinPrice(newMin);
+    setInternalMaxPrice(newMax);
+    // Call the debounced handler to notify parent
+    debouncedPriceHandler(newMin, newMax);
   };
 
-  const handleMaxPriceChange = (e) => {
-    const newMaxPrice = Math.max(minPrice, Math.min(Number(e.target.value), 3000));
-    setMaxPrice(newMaxPrice);
-    setValue([minPrice, newMaxPrice]);
+  const handleMinPriceInputChange = (e) => {
+    const value = Math.max(minPriceLimit, Math.min(Number(e.target.value), internalMaxPrice));
+    setInternalMinPrice(value);
+    debouncedPriceHandler(value, internalMaxPrice);
   };
 
-  // Size dropdown handler
-  const handleSizeSelect = (event) => {
-    setSelectedSize(event.target.value);
+  const handleMaxPriceInputChange = (e) => {
+     const value = Math.min(maxPriceLimit, Math.max(Number(e.target.value), internalMinPrice));
+    setInternalMaxPrice(value);
+    debouncedPriceHandler(internalMinPrice, value);
   };
 
-  // Category checkbox handler (only if categories exist)
-  const handleCheckboxChange = (category) => {
-    setCheckedItems(prev => 
-      prev.includes(category) 
-        ? prev.filter(item => item !== category)
-        : [...prev, category]
-    );
-  };
+  // Handlers for Size and Sort simply call the callback with the new value
+  const handleSizeSelect = (e) => onSizeChange(e.target.value);
+  const handleSortSelect = (e) => onSortChange(e.target.value);
 
-  // Sorting dropdown handler
-  const handleCatSelect = (event) => {
-    const cat = event.target.value;
-    setSelectedCat(cat);
 
-    let sortedProducts = [...item];
-    if (cat === "croissante") {
-      sortedProducts.sort((a, b) => 
-        parseInt(a.price.replace(' DH', '')) - parseInt(b.price.replace(' DH', ''))
-      );
-    } else if (cat === "decroissante") {
-      sortedProducts.sort((a, b) => 
-        parseInt(b.price.replace(' DH', '')) - parseInt(a.price.replace(' DH', ''))
-      );
-    }
-
-    onSortChange(sortedProducts);
-  };
-
+  // --- Component Rendering ---
   return (
-    <div>
-      {/* Only show categories section if categories are provided */}
+    // Apply modern sidebar styling using Tailwind
+    <div className="w-full bg-white space-y-6 p-4 md:p-6 border-r border-gray-200 h-full">
+
+      {/* Categories Filter */}
       {categories.length > 0 && (
-        <div className="categories">
-          <h6>Catégories de produits</h6>
-          {categories.map((category) => (
-            <FormControlLabel
-              key={category}
-              control={
-                <Checkbox 
-                  checked={checkedItems.includes(category)}
-                  onChange={() => handleCheckboxChange(category)}
+        <div className="filter-section border-b border-gray-100 pb-5">
+          <h6 className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wider">Catégories</h6>
+          <div className="space-y-2">
+            {categories.map((category) => (
+              <label key={category} className="flex items-center text-sm text-gray-700 hover:text-black transition-colors cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.includes(category)}
+                  onChange={() => handleCategoryToggle(category)}
+                  className="custom-checkbox h-4 w-4 rounded border-gray-300 text-black focus:ring-black mr-3 transition duration-150 ease-in-out"
                 />
-              }
-              label={category}
-            />
-          ))}
+                {category}
+              </label>
+            ))}
+          </div>
         </div>
       )}
 
-      {/* Price filter (always shown) */}
-      <div className="price-filter">
-        <h6>Filtrer par prix</h6>
-        <div className="input">
-          <input
-            id="minPrice"
-            className="w-full py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-            type="number"
-            min="0"
-            max={maxPrice}
-            value={minPrice}
-            onChange={handleMinPriceChange}
-          />
-          <input
-            id="maxPrice"
-            className="w-full py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-            type="number"
-            min={minPrice}
-            max="3000"
-            value={maxPrice}
-            onChange={handleMaxPriceChange}
-          />
+      {/* Price Filter */}
+      <div className="filter-section border-b border-gray-100 pb-5">
+        <h6 className="text-xs font-semibold text-gray-500 mb-4 uppercase tracking-wider">Prix</h6>
+        <div className="mb-4 px-1"> {/* Padding allows slider handles not to be clipped */}
+           <Slider
+              range
+              min={minPriceLimit}
+              max={maxPriceLimit}
+              value={[internalMinPrice, internalMaxPrice]}
+              onChange={handlePriceSliderChange}
+              // Class names connect to Tri.css for handle/track styles
+              className="nike-adidas-slider" // Add a specific class
+           />
         </div>
-        <div className="slider-container">
-          <Slider
-            range
-            min={0}
-            max={3000}
-            value={value}
-            onChange={handleSliderChange}
-          />
-          <p className="text-default-500 font-medium text-small">
-            Budget sélectionné: {minPrice} - {maxPrice} DH
-          </p>
+        <div className="flex items-center justify-between space-x-2 text-sm">
+          <div className="relative">
+            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">Min</span>
+             <input
+              type="number"
+              value={internalMinPrice}
+              min={minPriceLimit}
+              max={internalMaxPrice}
+              onChange={handleMinPriceInputChange}
+              className="w-full pl-8 pr-2 py-1 border border-gray-300 rounded-md text-right focus:outline-none focus:ring-1 focus:ring-black focus:border-black text-xs appearance-none [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              aria-label="Minimum Price"
+            />
+          </div>
+          <span className="text-gray-400 text-xs">–</span>
+          <div className="relative">
+             <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">Max</span>
+            <input
+              type="number"
+              value={internalMaxPrice}
+              min={internalMinPrice}
+              max={maxPriceLimit}
+              onChange={handleMaxPriceInputChange}
+              className="w-full pl-8 pr-2 py-1 border border-gray-300 rounded-md text-right focus:outline-none focus:ring-1 focus:ring-black focus:border-black text-xs appearance-none [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              aria-label="Maximum Price"
+            />
+          </div>
+           <span className="text-gray-600 text-xs">DH</span>
         </div>
       </div>
 
-      {/* Size selector (always shown) */}
-      <div className="size-selector">
-        <FormControl fullWidth>
-          <InputLabel id="size-select-label">Choisir la Taille</InputLabel>
-          <Select
-            labelId="size-select-label"
-            id="size-select"
-            value={selectedSize}
-            label="Choisir la Taille"
-            onChange={handleSizeSelect}
-          >
-            {["Taille", 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48].map((size) => (
-              <MenuItem key={size} value={size}>{size}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
+      {/* Size Filter */}
+       {availableSizes.length > 1 && (
+        <div className="filter-section border-b border-gray-100 pb-5">
+          <h6 className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wider">Taille</h6>
+          <div className="relative">
+             <select
+                id="size-select"
+                value={selectedSize}
+                onChange={handleSizeSelect}
+                className="custom-select block w-full appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition text-sm"
+             >
+               {availableSizes.map((size) => (
+                <option key={size} value={size} disabled={size === "Taille"}>
+                    {size === "Taille" ? "Sélectionner..." : (typeof size === 'number' ? `EU ${size}` : size)}
+                </option>
+               ))}
+             </select>
+             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.516 7.548c.436-.446 1.045-.481 1.576 0L10 10.405l2.908-2.857c.531-.481 1.141-.446 1.576 0 .436.445.408 1.197 0 1.642l-3.417 3.357c-.27.273-.624.388-.984.388s-.714-.115-.984-.388l-3.417-3.357c-.408-.445-.436-1.197 0-1.642z"/></svg>
+             </div>
+          </div>
+        </div>
+       )}
 
-      {/* Sorting dropdown (always shown) */}
-      <div className="sort-selector">
-        <FormControl fullWidth>
-          <InputLabel id="cat-select-label">Trier par</InputLabel>
-          <Select
-            labelId="cat-select-label"
-            id="cat-select"
-            value={selectedCat}
-            label="Trier par"
-            onChange={handleCatSelect}
-          >
-            {["recent au ancien", "croissante", "decroissante"].map((cat) => (
-              <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+      {/* Sort By Filter */}
+      <div className="filter-section">
+         <h6 className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wider">Trier Par</h6>
+         <div className="relative">
+           <select
+              id="sort-select"
+              value={selectedSort}
+              onChange={handleSortSelect}
+              className="custom-select block w-full appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition text-sm"
+           >
+             <option value={SORT_OPTIONS.RECENT}>Le plus récent</option>
+             <option value={SORT_OPTIONS.PRICE_ASC}>Prix : Croissant</option>
+             <option value={SORT_OPTIONS.PRICE_DESC}>Prix : Décroissant</option>
+           </select>
+           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.516 7.548c.436-.446 1.045-.481 1.576 0L10 10.405l2.908-2.857c.531-.481 1.141-.446 1.576 0 .436.445.408 1.197 0 1.642l-3.417 3.357c-.27.273-.624.388-.984.388s-.714-.115-.984-.388l-3.417-3.357c-.408-.445-.436-1.197 0-1.642z"/></svg>
+           </div>
+        </div>
       </div>
     </div>
   );

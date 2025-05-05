@@ -1,159 +1,376 @@
-/* General Styles */
+/* Middle.css */
+
+/* --- General Styles --- */
 .ads-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px; /* Keep if styling Ads component */
+}
+
+/* Title above the scroll section */
+.section-title {
+font-size: 1.1rem;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+margin: 2.5rem 0 1rem 0; /* Or adjust top/bottom margins as needed */
+padding: 0 1.5rem; /* Adjust horizontal padding as needed */
+color: #333;
+}
+
+/* --- Carousel Styles (Assuming Caroousel.jsx uses these) --- */
+.main-carousel {
+  border-radius: 15px; /* Or 0 if you wanted sharp corners previously */
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  margin: 2rem auto;
+  max-width: 1400px; /* Adjust as needed */
+}
+
+.carousel-item {
+  position: relative;
+  height: 400px; /* Adjust height as needed */
+  background-color: #000; /* Background for image loading/opacity */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8; /* Adjust opacity */
+}
+
+.carousel-caption {
+  position: absolute;
+  left: 8%;
+  bottom: 20%;
+  text-align: left;
+  padding: 1rem 2rem; /* Adjusted padding slightly */
+  background-color: transparent;
+  color: #fff; /* Ensure text is visible */
+}
+
+.carousel-caption h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 1.5rem; /* Adjusted margin */
+}
+
+/* Note: Assuming Caroousel.jsx uses 'shop-button' not 'shop-now-button' based on earlier code */
+/* Adjust class name here if needed */
+.shop-button {
+  padding: 0.8rem 1.8rem; /* Adjusted padding */
+  font-size: 1rem; /* Adjusted size */
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex; /* Use inline-flex */
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-decoration: none; /* Remove underline if it behaves like a link */
+}
+
+.shop-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #1d4ed8, #2563eb);
+}
+
+/* If you have an icon inside the button */
+.button-icon {
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.shop-button:hover .button-icon {
+  transform: translateX(3px);
+}
+
+/* --- Horizontal Scroll Product Cards --- */
+
+/* Container for the entire scrollable area */
+.scroll-container {
+width: 100%;
+overflow: hidden;
+padding: 0 1rem; /* Horizontal padding for the container */
+position: relative;
+margin-bottom: 30px; /* Consistent margin */
+overflow-x: hidden;
+
+}
+.scroll-content {
+  display: flex;
+  overflow-x: hidden; /* Primary rule to hide scroll */
+  overflow-y: hidden;
+  padding: 10px 15px;
+  scroll-behavior: smooth; /* For JS scrolling */
+  gap: 16px;
+  /* --- Ensure no scrollbar-width or ::-webkit-scrollbar rules remain --- */
+  scrollbar-width: none; /* Explicitly hide for Firefox */
+}
+
+/* Make sure this rule is also present or added for Webkit */
+.scroll-content::-webkit-scrollbar {
+    display: none; /* Explicitly hide for Webkit */
+}
+
+/* The actual content area that scrolls horizontally */
+.scroll-content {
+display: flex;
+overflow-y: hidden;
+padding: 10px 5px; /* Top/bottom padding, less horizontal needed due to container padding */
+scroll-behavior: smooth;
+gap: 16px; /* Spacing between cards */
+
+/* Optional: Improved scrollbar styling */
+scrollbar-width: thin;
+scrollbar-color: #cccccc #f0f0f0;
+}
+.scroll-content::-webkit-scrollbar {
+height: 8px;
+}
+.scroll-content::-webkit-scrollbar-track {
+background: #f0f0f0;
+border-radius: 4px;
+}
+.scroll-content::-webkit-scrollbar-thumb {
+background-color: #cccccc;
+border-radius: 4px;
+border: 2px solid #f0f0f0;
+}
+
+/* Individual Product Card Styling (Smaller version with precise text) */
+.scroll-item.product-card {
+flex: 0 0 auto; /* Don't shrink/grow */
+width: 220px;   /* Smaller width */
+background-color: #fff;
+border: none;
+cursor: pointer;
+text-align: left; /* Text align left */
+transition: opacity 0.2s ease-in-out; /* Use opacity or keep transform/shadow */
+/* If keeping hover effect from older styles: */
+/* transition: transform 0.3s ease, box-shadow 0.3s ease; */
+}
+
+.scroll-item.product-card:hover {
+opacity: 0.9;
+/* If keeping hover effect from older styles: */
+/* transform: translateY(-7px); */
+/* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); */
+}
+
+/* Image Wrapper */
+.scroll-item-image-wrapper {
+background-color: #f7f7f7; /* Light grey background */
+margin-bottom: 10px;    /* Space below image */
+position: relative;
+display: block;
+width: 100%;
+height: 240px;           /* Fixed height for smaller card (adjust if needed) */
+                         /* Remove if using padding-top below */
+/* padding-top: 115%; */ /* OR Use padding-top for aspect ratio (adjust %) */
+}
+
+.scroll-item-image {
+display: block;
+/* --- Choose ONE positioning method based on wrapper height method --- */
+position: static; /* USE THIS if wrapper has fixed height */
+/* position: absolute; */ /* USE THIS if wrapper uses padding-top */
+top: 0;           /* Only needed if position: absolute */
+left: 0;          /* Only needed if position: absolute */
+width: 100%;
+height: 100%;     /* Fills the wrapper */
+object-fit: cover;
+object-position: center;
+}
+
+/* Placeholder for missing images */
+.scroll-item-image-placeholder {
+display: flex;
+align-items: center;
+justify-content: center;
+/* --- Match position to .scroll-item-image --- */
+position: static;   /* If image uses static */
+/* position: absolute; */ /* If image uses absolute */
+top: 0; left: 0; width: 100%; height: 100%;
+color: #999;
+font-size: 0.75rem;
+text-align: center;
+background-color: #f0f0f0;
+}
+
+/* Details Section under image */
+.scroll-item-details {
+padding: 0 4px 10px 4px;
+}
+
+/* Text Styling (Precise Match) */
+.item-name,
+.item-price,
+.item-category,
+.item-status {
+font-family: inherit; /* Assuming global font is set */
+margin: 0;
+line-height: 1.3;
+}
+
+.item-name {
+font-size: 0.8rem;
+font-weight: normal;
+color: #212529;
+text-transform: uppercase;
+margin-bottom: 2px;
+}
+
+.item-price {
+font-size: 0.95rem; /* Intentionally kept larger based on image */
+font-weight: bold;
+color: #000;
+text-transform: none;
+margin-bottom: 6px; /* Increased spacing */
+}
+
+.item-category {
+font-size: 0.75rem;
+font-weight: normal;
+color: #6c757d;
+text-transform: capitalize;
+margin-bottom: 2px;
+}
+
+.item-status {
+font-size: 0.75rem;
+font-weight: normal;
+color: #6c757d;
+text-transform: capitalize;
+margin-bottom: 0;
+}
+
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+/* Carousel adjustments for smaller screens */
+.carousel-caption h3 {
+  font-size: 1.8rem;
+}
+
+.shop-button { /* Make sure class name matches button */
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* NO responsive rules needed here for the old .scroll-item */
+/* Add specific responsive rules for .scroll-item.product-card IF NEEDED */
+/* e.g., reduce width or font sizes further on very small screens */
+/*
+.scroll-item.product-card {
+  width: 180px;
+}
+.scroll-item-image-wrapper {
+   height: 200px;
+}
+.item-price {
+  font-size: 0.85rem;
+}
+*/
+}
+/* Middle.css */
+
+/* ... (Keep other styles like .ads-container, .section-title, Carousel, Product Cards, etc.) ... */
+
+
+/* --- NEW/Updated Arrow Button Styles (Pill Shape) --- */
+.scroll-arrow {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust vertical centering precisely */
+  z-index: 10;
+
+  /* --- Style Changes to match the image --- */
+  background-color: #f7f8fa; /* Very light grey/off-white - adjust hex code if needed */
+  border: 1px solid rgba(0, 0, 0, 0.08); /* Very subtle border */
+  border-radius: 50px;      /* Makes it pill-shaped */
+  width: 70px;              /* Adjust width - looks wider than tall */
+  height: 38px;             /* Adjust height */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06); /* Subtle shadow for depth */
+  color: #262626;           /* Darker grey/black for the icon */
+  /* ---------------------------------------- */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  /* Remove explicit font-size if icon size controls itself well */
+}
+
+.scroll-arrow:hover {
+  background-color: #f0f2f5; /* Slightly darker/different shade on hover */
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.scroll-arrow:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  display: none; /* Hide when disabled */
+}
+
+/* Position Adjustments might need tweaking */
+.prev-arrow {
+  left: -25px; /* Adjust horizontal position based on new width */
+  /* May need padding inside button if icon is too close to edge */
+  /* justify-content: flex-start; padding-left: 15px; */
+}
+
+.next-arrow {
+  right: -25px; /* Adjust horizontal position based on new width */
+  /* May need padding inside button if icon is too close to edge */
+   /* justify-content: flex-end; padding-right: 15px; */
+}
+
+
+/* --- Icon specific styling --- */
+/* Target the SVG element directly generated by react-icons */
+.scroll-arrow svg {
+    width: 16px;  /* Control icon size */
+    height: 16px; /* Control icon size */
+    /* stroke-width: 2; */ /* You might need to adjust stroke-width if supported by the icon for thickness */
+}
+
+/* ... (Keep Responsive styles, update arrow size/position if needed) ... */
+
+@media (max-width: 768px) {
+  /* ... (Carousel responsive styles) ... */
+
+  .scroll-arrow {
+    width: 60px; /* Smaller pill button on mobile */
+    height: 34px;
   }
-  
-  .section-title {
-    margin-top: 30px;
-    margin-left: 20px;
-    font-size: 1.5rem;
-    font-weight: 600;
+  .scroll-arrow svg {
+    width: 14px; /* Smaller icon */
+    height: 14px;
   }
-  .section-title a {
-    font-size: 1.1rem;
+  .prev-arrow {
+    left: -20px; /* Adjust mobile position */
   }
-  
-  
-  /* Carousel Styles */
-  .main-carousel {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    margin: 2rem auto;
-    max-width: 1400px;
-  }
-  
-  .carousel-item {
-    position: relative;
-    height: 400px;
-    background-color: #000;
+  .next-arrow {
+    right: -20px; /* Adjust mobile position */
   }
 
-  
-  .carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.8;
-  }
-  
-  .carousel-caption {
-    position: absolute;
-    left: 8%;
-    bottom: 20%;
-    text-align: left;
-    padding: 2rem;
-    background-color: transparent;
-  }
-  
-  .carousel-caption h3 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  .carousel-subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-  }
-  
-  .sponsor-badge {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    display: inline-block;
-    backdrop-filter: blur(5px);
-  }
-  
-  .shop-now-button {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(45deg, #2563eb, #1d4ed8);
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .shop-now-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(45deg, #1d4ed8, #2563eb);
-  }
-  
-  .button-icon {
-    font-weight: 700;
-    transition: transform 0.3s ease;
-  }
-  
-  .shop-now-button:hover .button-icon {
-    transform: translateX(3px);
-  }
-  
-  /* Scrollable Sections */
-  .scroll-container {
-    margin-bottom: 30px;
-  }
-  
-  .scroll-content {
-    display: flex;
-    gap: 30px;
-    padding: 20px;
-  }
-  
-  .scroll-item {
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .scroll-item:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  .scroll-item img {
-    width: 300px;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 30px;
-  }
-  
-  .scroll-item p {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-top: 10px;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .carousel-caption h3 {
-      font-size: 1.8rem;
-    }
-  
-    .shop-now-button {
-      padding: 0.8rem 1.8rem;
-      font-size: 0.9rem;
-    }
-  
-    .scroll-item img {
-      width: 200px;
-    }
-  
-    .scroll-item p {
-      font-size: 1rem;
-    }
-  }
+  /* ... (Other responsive rules if needed) ... */
+}

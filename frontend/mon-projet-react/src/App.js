@@ -19,6 +19,7 @@ import { WishlistProvider } from "./files/WishlistContext";
 import Jackets from './files/Jackets';
 import Balls from './files/Balls';
 import Boots from './files/Boots';
+import Kits from './files/Kits';
 
 // Composant pour scroller en haut à chaque changement de route
 const ScrollToTop = () => {
@@ -58,8 +59,10 @@ function App() {
           <Route path="/Jackets" element={<Layout><Jackets /></Layout>} />
           <Route path="/Balls" element={<Layout><Balls/></Layout>} />
           <Route path="/Boots" element={<Layout><Boots/></Layout>} />
+          <Route path="/Kits" element={<Layout><Kits/></Layout>} />
           <Route path="/germain" element={<Layout><Germain /></Layout>} />
           <Route path="/wishlist" element={<Layout><Wishlist /></Layout>} />
+          <Route path="/register" element={<Layout><SignUp /></Layout>} />
         </Routes>
       </Router>
     </WishlistProvider>

@@ -1,76 +1,59 @@
-.product-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 100px;
-    padding: 20px;
-    gap: 20px;
-}
+/* src/Produit.css */
 
-.product-image-section {
-    width: 40%;
-    box-sizing: border-box;
-}
+/* Import Tailwind base/components/utilities if not done globally */
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */
 
-.product-details-section {
-    width: 45%;
-    box-sizing: border-box;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-.product-title {
-    font-size: xx-large;
-    font-weight: 700;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eaeaea;
-    color: #1f1f1f;
-}
+/* General page structure handled by Tailwind classes in JSX */
+/* (.product-page-container, .image-column, .details-column, etc.) */
 
-.product-price {
-    font-size: x-large;
-    font-weight: 550;
-    color: #333;
-    margin-top: 10px;
-}
-
-.size-selector-container {
-    margin-bottom: 20px;
-}
-
-.customization-input {
-    height: 40px;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.add-to-cart-button {
-    height: 50px;
-    width: 100%;
-    font-size: 16px;
-    background-color: #c02020;
-    color: white;
-    border: none;
-    border-radius: 4px;
+/* --- Custom Radio Buttons (for Customization Options) --- */
+/* Basic reset/styling - Tailwind's @tailwindcss/forms plugin is recommended for easier form styling */
+.custom-radio {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 50%;
+    position: relative;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    padding: 0;
+  }
+  
+
+  /* Add a dot inside when checked */
+  .custom-radio:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px; /* Adjust size of inner dot */
+    height: 8px;
+    border-radius: 50%;
+    background-color: #111827; /* Black dot */
+  }
+  
+
+  
+/* Hides arrows for number input in Webkit browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.add-to-cart-button:hover {
-    background-color: #a01818;
+/* Hides arrows for number input in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
-.margin-bottom {
-    margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-    .product-image-section, .product-details-section {
-        width: 100%;
+  /* --- Responsive Tweaks (if needed beyond Tailwind breakpoints) --- */
+  /* Example: finer control over gaps or element sizes on specific screens */
+  @media (max-width: 767px) {
+    .product-details-column {
+        /* Add more top margin if needed when stacked */
+        margin-top: 2rem;
     }
-}
+  }

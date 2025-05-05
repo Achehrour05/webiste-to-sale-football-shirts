@@ -1,470 +1,191 @@
-.navbarcontainer {
-    margin-bottom: 100px;
-  }
-  
-  .navbar {
-    height: 70px;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-  }
-  
-  /* Brand and Contact */
-  .navbar-brand {
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0;
-    margin: 0;
-  }
-  
-  .navbar-brand:hover {
-    color: #000;
-  }
-  
-  .contact {
-    font-size: 14px;
-    font-weight: 500;
-    color: #555;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    margin-left: 0;
-    padding-left: 0;
-  }
-  
-  .contact:hover {
-    color: #000;
-  }
-  
- /* Icons section - improved spacing */
-.navbar-icons {
-  display: flex;
-  align-items: center;
-  gap: 40px; /* Decrease gap between icons */
-  position: relative;
-  right: 40px;
+
+
+/* Define some potential CSS variables (optional but good practice) */
+:root {
+  --nike-black: #111111;
+  --nike-off-white: #f5f5f5;
+  --nike-grey: #757575;
+  --nike-header-height: 60px; /* Consistent height */
 }
 
-/* Group the utility icons together */
-.icon-group {
-  display: flex;
-  align-items: center;
-  gap: 4px; /* Reduce gap further */
-}
-
-/* Icon button wrapper */
-.nav-icon-wrapper {
-  position: relative;
-}
-
-  
-.nav-icon-btn {
-  background: transparent;
+/* Basic resets within component scope (if needed) */
+.header a,
+.header button,
+.header input {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Example font stack */
+  color: var(--nike-black);
+  margin: 0;
+  padding: 0;
+  background: none;
   border: none;
-  cursor: pointer;
+}
+
+.header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main Header Styling */
+.header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--nike-header-height);
+  padding: 0 48px; /* Horizontal padding */
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--nike-off-white);
+  box-sizing: border-box; /* Include padding/border in height */
+}
+
+/* Logo */
+.logoContainer {
+  flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+.logoLink {
+  display: block; /* Prevents extra space */
+}
+
+.logo {
+  height: 24px; /* Target logo size */
+  width: auto;
+  display: block;
+}
+
+/* Navigation */
+.navigation {
+  /* Centers itself due to justify-content: space-between on parent */
+}
+
+.navList {
+  display: flex;
+  gap: 24px; /* Spacing between links */
+}
+
+.navItem a {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: var(--nike-header-height); /* Vertically center text */
+  padding: 0 4px; /* Subtle padding */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navItem a:hover {
+  color: var(--nike-grey);
+}
+
+/* Actions Section (Right Side) */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between search and icons */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Search Area */
+.searchWrapper {
+  position: relative; /* Needed for absolute icon positioning */
+}
+
+.searchInput {
+  background-color: var(--nike-off-white);
+  border-radius: 30px;
+  padding: 9px 16px 9px 44px; /* TRBL - Left padding for icon */
+  font-size: 16px;
+  width: 180px; /* Or adjust as needed */
+  outline: none;
+  box-sizing: border-box;
+  color: var(--nike-black);
+  line-height: normal;
+  border: none; /* Explicitly none */
+}
+
+.searchInput::placeholder {
+  color: var(--nike-grey);
+  font-size: 16px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px; /* Position inside the padding */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--nike-black);
+  pointer-events: none; /* So icon doesn't block input click */
+}
+
+/* Action Icons (Heart, Bag) */
+.actionIcons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.actionButton {
+  display: flex; /* Ensure flex properties work */
   align-items: center;
   justify-content: center;
+  padding: 8px; /* Clickable area */
+  border-radius: 50%;
+  cursor: pointer;
   transition: background-color 0.2s ease;
-  width: 150%;
 }
 
-.nav-icon-btn:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+.actionButton:hover {
+  background-color: var(--nike-off-white);
 }
 
-.nav-icon {
-  font-size: 20px; /* Vous pouvez ajuster cela pour faire les icônes plus petites si nécessaire */
-}
-  /* Favorite dropdown - aligned properly */
-  .favorite-dropdown {
-    position: relative;
-  }
-  
-  .favorite-dropdown-btn {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: transparent;
-    border: none;
-    padding: 6px 10px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-  }
-  .favorite-dropdown-btn:hover{
-    background-color: rgb(241, 239, 239);
-    color: black;
-  }
-  .dropdown-icon {
-    font-size: 12px;
-    color: #777;
-    transition: transform 0.2s ease;
-  }
-  
-  .favorite-menu {
-    width: 260px;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    right: 0;
-    left: auto;
-    margin-top: 8px;
-  }
-  
-  .favorite-menu-content {
-    display: flex;
-    flex-direction: column;
- 
-  }
-  
-  .menu-section-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    margin: 0 0 6px 0;
-    padding: 0;
-  }
-  
-  .menu-section {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 10px;
-  }
-  
-  .menu-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px;
-    text-decoration: none;
-    color: #333;
-    border-radius: 6px;
-    transition: background-color 0.2s ease;
-  }
-  
-  .menu-item:hover {
-    background-color: #f5f5f5;
-    color: #333;
-  }
-  
-  .menu-item img {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
-  }
-  
-  .menu-item span {
-    font-size: 14px;
-    font-weight: 400;
-  }
-  
- /* Navbar icons alignment */
-.navbar-icons {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  position: relative;
-  right: 40px;
-  justify-content: flex-end; /* Ajoutez cette propriété pour aligner à droite */
+.actionButton svg { /* Style the SVG icon inside */
+  display: block; /* Prevents potential spacing issues */
+  width: 24px;
+  height: 24px;
+  color: var(--nike-black);
 }
 
-/* Responsiveness for smaller screens */
-@media (max-width: 992px) {
-  .navbar-icons {
-    gap: 15px;
-    right: 20px;
-    justify-content: flex-end; /* Garder les icônes à droite sur les petits écrans */
+/* Basic Responsive: Hide nav, shrink search for smaller screens */
+@media (max-width: 1024px) {
+  .navigation {
+    display: none; /* Hide nav menu */
+    /* Consider adding a burger menu button */
+  }
+  .header {
+    padding: 0 24px; /* Reduce padding */
   }
 }
 
 @media (max-width: 768px) {
-  .navbar-icons {
+  /* Optionally make search just an icon on mobile */
+  .searchInput {
+    width: 40px; /* Make it square/circular */
+    height: 40px;
+    padding: 9px; /* Equal padding */
+    border-radius: 50%;
+  }
+  /* Hide text input value visually */
+  .searchInput::placeholder {
+      color: transparent;
+  }
+  .searchIcon {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .actions {
     gap: 10px;
-    justify-content: flex-end; /* Garder les icônes à droite sur les petits écrans */
   }
-
-  .favorite-menu {
-    width: 230px;
-    padding: 12px;
-  }
-
-  .menu-item {
-    font-size: 12px;
+  .logo {
+      height: 20px; /* Maybe smaller logo */
   }
 }
-
-
-
-
-@media (max-width: 817px) {
-  /* Masquer le lien Contact Us sur les petits écrans */
-  .contact {
-    display: none;
-  }
-
-  /* Aligner Blancora à gauche */
-  .navbar-brand {
-    left: 0; /* Aligner à gauche */
-    transform: none; /* Supprimer la transformation pour centrer */
-  }
-
-  /* Ajouter du padding à gauche pour le logo si nécessaire */
-  .navbar {
-    padding-left: 15px;
-  }
-
-  /* Aligner les icônes à droite */
-  .navbar-icons {
-    position: absolute;
-    right: 15px; /* Mettre les icônes à droite */
-    gap: 5px; /* Espacement ajusté entre les icônes */
-  }
-
-  .icon-group {
-    gap: 4px; /* Espacement ajusté entre les icônes dans le groupe */
-  }
-
-  /* Réduire la taille des icônes si nécessaire */
-  .nav-icon {
-    font-size: 18px;
-  }
+/* Ensure this exists */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-/* Favorite dropdown visibility */
-.favorite-dropdown {
-  display: block; /* Par défaut, garder visible */
-}
-
-
-.nav-icon-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.nav-icon-btn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  color: #333;
-  transition: color 0.3s ease;
-}
-
-.nav-icon-btn:hover {
-  color: #007bff;
-}
-
-.search-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  width: 300px;
-  border-radius: 8px;
-  z-index: 10;
-  max-width: 90vw; /* Ensures the dropdown doesn't overflow on small screens */
-}
-
-.search-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  font-weight: bold;
-}
-
-.close-icon {
-  cursor: pointer;
-  font-size: 1.5rem;
-  color: #666;
-  transition: color 0.3s ease;
-}
-
-.close-icon:hover {
-  color: #ff4040;
-}
-
-.search-input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.search-input {
-  flex-grow: 1;
-  padding: 8px 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  transition: border 0.3s ease;
-}
-
-.search-input:focus {
-  border-color: #007bff;
-}
-
-.search-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.search-btn:hover {
-  background-color: #0056b3;
-}
-
-@media (max-width: 480px) {
-  .nav-icon-btn {
-    font-size: 1.2rem;
-  }
-
-}
-
-.search-dropdown {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-}
-
-.search-dropdown.left-align {
-  left: 0; /* Aligns it to the left */
-  right: auto; /* Remove any right offset */
-}
-
-.search-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: #f1f1f1;
-}
-
-.search-input-wrapper {
-  padding: 10px;
-}
-
-.search-input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-}
-
-.search-btn {
-  width: 100%;
-  padding: 8px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-/* Adjust the search icon size for smaller screens */
-@media (max-width: 537px) {
-  .nav-icon-btn {
-    font-size: 1.2rem; /* Reduce size for smaller screens */
-  }
-
-  .search-dropdown {
-    width: 80%; /* Make the dropdown take less space on smaller screens */
-    left: 0%; /* Center it on small screens */
-  }
-}
-
-/* Make the search icon wrap properly on smaller screens */
-@media (max-width: 768px) {
-  .navbar-icons {
-    gap: 15px; /* Adjust spacing between icons for smaller screens */
-  }
-
-  .nav-icon-btn {
-    font-size: 1.4rem; /* Slightly smaller search icon */
-  }
-}
-
-/* For larger screens (desktop), the search icon remains normal */
-@media (min-width: 768px) {
-  .nav-icon-btn {
-    font-size: 1.5rem; /* Default icon size for large screens */
-  }
-
-  .search-dropdown {
-    width: 300px; /* Default width for the search dropdown */
-  }
-}
-
-/* Ensure the search input width adjusts accordingly */
-.search-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  width: 300px;
-  border-radius: 8px;
-  z-index: 10;
-  max-width: 90vw; /* Ensures the dropdown doesn't overflow on small screens */
-}
-
-.search-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  font-weight: bold;
-}
-
-.search-input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.search-input {
-  flex-grow: 1;
-  padding: 8px 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  transition: border 0.3s ease;
-}
-
-.search-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.search-btn:hover {
-  background-color: #0056b3;
-}
-.search-btn{
-  width: 30%;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
