@@ -20,6 +20,10 @@ import Jackets from './files/Jackets';
 import Balls from './files/Balls';
 import Boots from './files/Boots';
 import Kits from './files/Kits';
+import ContactUs from './files/ContactUs';
+import { AuthProvider } from './context/AuthProvider';
+import ForgotPassword from './files/ForgotPassword';
+import ResetPassword from './files/ResetPassword';
 
 // Composant pour scroller en haut à chaque changement de route
 const ScrollToTop = () => {
@@ -44,12 +48,12 @@ const Layout = ({ children }) => (
 
 function App() {
   return (
-    <WishlistProvider>
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Layout><Middle /></Layout>} />
           <Route path="/products" element={<Layout><Shop /></Layout>} />
-          <Route path="/registration" element={<Layout><SignUp /></Layout>} />
+          <Route path="/registration" element={<><Header /><SignUp /></>} />
           <Route path="/produit/:id" element={<Layout><Produit /></Layout>} />
           <Route path="/english" element={<Layout><English /></Layout>} />
           <Route path="/spanish" element={<Layout><Spanish /></Layout>} />
@@ -61,11 +65,13 @@ function App() {
           <Route path="/Boots" element={<Layout><Boots/></Layout>} />
           <Route path="/Kits" element={<Layout><Kits/></Layout>} />
           <Route path="/germain" element={<Layout><Germain /></Layout>} />
-          <Route path="/wishlist" element={<Layout><Wishlist /></Layout>} />
+          <Route path="/forget-pass" element={<Layout><ForgotPassword /></Layout>} />
+          <Route path="/reset-password" element={<Layout><ResetPassword /></Layout>} />
           <Route path="/register" element={<Layout><SignUp /></Layout>} />
+          <Route path="/contact" element={<><Header /><ContactUs /></>} />
         </Routes>
       </Router>
-    </WishlistProvider>
+    </AuthProvider>
   );
 }
 

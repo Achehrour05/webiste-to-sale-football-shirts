@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
+import { FaAngleRight, FaChevronLeft } from "react-icons/fa6";
 export default function ShopEssentials() {
   const scrollContainerRef = useRef(null);
   
@@ -44,23 +44,23 @@ export default function ShopEssentials() {
   };
 
   return (
-    <div className="w-full h-screen px-4 py-8 bg-white mt-0">
+    <div className="w-full px-4 py-8 bg-white mt-0">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold">Shop the Essentials</h2>
+        <h2 className="text-3xl font-bold text-[1.1rem] font-semibold uppercase tracking-[0.5px] mt-[2.5rem] mb-[1rem] px-[1.5rem] text-[#333]">Shop the Essentials</h2>
         <div className="flex space-x-2">
           <button 
             onClick={scrollLeft}
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+            className="p-2 rounded-full bg-white-100 hover:bg-gray-200 transition-colors"
             aria-label="Scroll left"
           >
-            <ChevronLeft size={24} />
+            <FaChevronLeft/>
           </button>
           <button 
             onClick={scrollRight}
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+            className="p-2 rounded-full bg-white-100 hover:bg-gray-200 transition-colors flex justify-end"
             aria-label="Scroll right"
           >
-            <ChevronRight size={24} />
+            <FaAngleRight/>
           </button>
         </div>
       </div>

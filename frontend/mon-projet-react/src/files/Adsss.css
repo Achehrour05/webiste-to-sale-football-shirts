@@ -1,12 +1,48 @@
-/* Add this to your global CSS file like index.css or App.css */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .scrollbar-hide {
-    /* For Firefox */
-    scrollbar-width: none;
-    /* For Internet Explorer and Edge (older versions) */
-    -ms-overflow-style: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroll-arrow {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.scroll-arrow:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.05);
+}
+
+.prev-arrow {
+  left: 10px;
+}
+
+.next-arrow {
+  right: 10px;
+}
+
+@media (max-width: 768px) {
+  .scroll-arrow {
+    width: 36px;
+    height: 36px;
   }
   
-  /* For Chrome, Safari, and Opera */
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  .prev-arrow {
+    left: 5px;
   }
+  
+  .next-arrow {
+    right: 5px;
+  }
+}

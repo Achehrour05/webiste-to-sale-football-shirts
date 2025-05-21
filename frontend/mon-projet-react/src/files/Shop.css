@@ -1,47 +1,27 @@
-/* src/pages/Shop.css */
 
-/* Keep only essential styles not easily done with Tailwind or base overrides */
-
-/* --- Optional: Custom Scrollbar for Sidebar --- */
-/* You can style the scrollbar for the sticky sidebar */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px; /* Width of the scrollbar */
+  width: 6px; 
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Light background for the track */
+  background: #f1f1f1; 
   border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #cccccc; /* Color of the draggable scroll handle */
+  background: #cccccc; 
   border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #aaaaaa; /* Darker handle on hover */
+  background: #aaaaaa; 
 }
-
-/* --- Utility if not using a Tailwind plugin --- */
-/* Can be placed in index.css or App.css as well */
 .scrollbar-hide {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome/Safari/Opera */
+  display: none;
 }
 
 
-/* --- Deprecated Rules from previous versions (Example - Remove these) --- */
-/*
-.containerr { ... remove ... }
-.left { ... remove ... }
-.right { ... remove ... }
-.input { ... remove ... }
-.input input { ... remove ... }
-.product { ... remove unless for specific non-grid overrides ... }
-.eme { ... remove ... }
-.button { ... remove ... }
-.productinput { ... remove ... }
-*/
