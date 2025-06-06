@@ -1,0 +1,65 @@
+
+.custom-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #cbd5e1; 
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  }
+  .custom-checkbox:checked {
+    background-color: #111827; 
+    border-color: #111827;
+  }
+  .custom-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 4px; 
+    top: 1px;  
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .custom-checkbox:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4); 
+  }
+
+  .nike-adidas-slider .rc-slider-rail {
+    background-color: #e5e7eb; 
+    height: 2px; 
+    border-radius: 1px;
+  }
+  .nike-adidas-slider .rc-slider-track {
+    background-color: #111827; 
+    height: 2px; 
+    border-radius: 1px;
+  }
+  .nike-adidas-slider .rc-slider-handle {
+    background-color: #111827;
+    border: none; 
+    height: 14px; 
+    width: 14px;
+    margin-top: -6px; 
+    opacity: 1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+  }
+  .nike-adidas-slider .rc-slider-handle:focus,
+  .nike-adidas-slider .rc-slider-handle-dragging.rc-slider-handle-dragging { 
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4); 
+  }
+  .nike-adidas-slider .rc-slider-handle:active {
+    cursor: grabbing;
+  }
+  .nike-adidas-slider .rc-slider-dot {
+    display: none; 
+  }

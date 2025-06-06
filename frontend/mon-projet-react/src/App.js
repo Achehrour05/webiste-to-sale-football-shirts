@@ -1,76 +1,126 @@
+// src/App.js
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import './App.css';
 
-import Header from './files/Header';
-import Middle from './files/Middle';
-import Footer from './files/Footer';
-import Shop from './files/Shop';
-import SignUp from './files/SignUp';
-import Produit from './files/Produit';
-import English from './files/English';
-import Spanish from './files/Spanish';
-import Italie from './files/Italie';
-import Other from './files/Other';
-import France from './files/France';
-import Germain from './files/Germain';
-import Wishlist from './files/Wishlist';
-import { WishlistProvider } from "./files/WishlistContext";
-import Jackets from './files/Jackets';
-import Balls from './files/Balls';
-import Boots from './files/Boots';
-import Kits from './files/Kits';
-import ContactUs from './files/ContactUs';
+import Header from './components/Layout/Header';
+import Middle from './components/Layout/Middle';
+import Footer from './components/Layout/Footer';
+import Shop from './components/product/Shop';
+import SignUp from './pages/SignUp';
+import Produit from './pages/Produit';
+import English from './components/product/English';
+import Spanish from './components/product/Spanish';
+import Italie from './components/product/Italie';
+import Other from './components/product/Other';
+import France from './components/product/France';
+import Germain from './components/product/Germain';
+import { WishlistProvider } from "./components/wishlist/WishlistContext";
+import Jackets from './components/product/Jackets';
+import Balls from './components/product/Balls';
+import Boots from './components/product/Boots';
+import Kits from './components/product/Kits';
+import ContactUs from './pages/ContactUs';
 import { AuthProvider } from './context/AuthProvider';
-import ForgotPassword from './files/ForgotPassword';
-import ResetPassword from './files/ResetPassword';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import WishlistPage from './components/wishlist/Wishlist'; 
+import { CartProvider } from './context/CartContext';
+import CartPage from './pages/CartPage'; 
+import CheckoutPage from './pages/CheckoutPage'
+import LoginPage from './pages/LoginPage'
+import AdminAddProductPage from './pages/admin/AdminAddProductPage';
+import AdminLayout from './components/Layout/AdminLayout';
+import ProtectedAdminRoute from './components/Layout/ProtectedAdminRoute';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminProductsList from './pages/admin/AdminProductsList';
+import AdminViewProductsByCategory from './pages/admin/AdminViewProductsByCategory';
+import OrdersManagementPage from './pages/OrdersManagementPag'
+import AdminUsersList from './pages/admin/AdminUsersList'
+import AdminEditProductPage from './pages/admin/AdminEditProductPage';
 
-// Composant pour scroller en haut à chaque changement de route
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
   return null;
 };
 
-// Layout avec Header et Footer autour des composants de page
-const Layout = ({ children }) => (
+const MainLayout = ({ children }) => (
   <>
     <Header />
     <ScrollToTop />
-    {children}
+    <main>{children}</main>
     <Footer />
+  </>
+);
+
+const AuthLayout = ({ children }) => (
+  <>
+    <Header />
+    <ScrollToTop />
+    <main>{children}</main>
+  </>
+);
+
+const SimpleLayout = ({ children }) => (
+  <>
+    <ScrollToTop />
+    <main>{children}</main>
   </>
 );
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Layout><Middle /></Layout>} />
-          <Route path="/products" element={<Layout><Shop /></Layout>} />
-          <Route path="/registration" element={<><Header /><SignUp /></>} />
-          <Route path="/produit/:id" element={<Layout><Produit /></Layout>} />
-          <Route path="/english" element={<Layout><English /></Layout>} />
-          <Route path="/spanish" element={<Layout><Spanish /></Layout>} />
-          <Route path="/france" element={<Layout><France /></Layout>} />
-          <Route path="/italie" element={<Layout><Italie /></Layout>} />
-          <Route path="/other" element={<Layout><Other /></Layout>} />
-          <Route path="/Jackets" element={<Layout><Jackets /></Layout>} />
-          <Route path="/Balls" element={<Layout><Balls/></Layout>} />
-          <Route path="/Boots" element={<Layout><Boots/></Layout>} />
-          <Route path="/Kits" element={<Layout><Kits/></Layout>} />
-          <Route path="/germain" element={<Layout><Germain /></Layout>} />
-          <Route path="/forget-pass" element={<Layout><ForgotPassword /></Layout>} />
-          <Route path="/reset-password" element={<Layout><ResetPassword /></Layout>} />
-          <Route path="/register" element={<Layout><SignUp /></Layout>} />
-          <Route path="/contact" element={<><Header /><ContactUs /></>} />
-        </Routes>
-      </Router>
+      <WishlistProvider>
+        <CartProvider>
+          <Router>
+            <Routes>
+
+              <Route path="/" element={<MainLayout><Middle /></MainLayout>} />
+              <Route path="/products" element={<MainLayout><Shop /></MainLayout>} />
+              <Route path="/produit/:id" element={<MainLayout><Produit /></MainLayout>} />
+              <Route path="/english" element={<MainLayout><English /></MainLayout>} />
+              <Route path="/spanish" element={<MainLayout><Spanish /></MainLayout>} />
+              <Route path="/france" element={<MainLayout><France /></MainLayout>} />
+              <Route path="/italie" element={<MainLayout><Italie /></MainLayout>} />
+              <Route path="/other" element={<MainLayout><Other /></MainLayout>} />
+              <Route path="/Jackets" element={<MainLayout><Jackets /></MainLayout>} />
+              <Route path="/Balls" element={<MainLayout><Balls /></MainLayout>} />
+              <Route path="/Boots" element={<MainLayout><Boots /></MainLayout>} />
+              <Route path="/Kits" element={<MainLayout><Kits /></MainLayout>} />
+              <Route path="/germain" element={<MainLayout><Germain /></MainLayout>} />
+              <Route path="/forget-pass" element={<MainLayout><ForgotPassword /></MainLayout>} />
+              <Route path="/reset-password" element={<MainLayout><ResetPassword /></MainLayout>} />
+              <Route path="/wishlist" element={<MainLayout><WishlistPage /></MainLayout>} />
+              <Route path="/cart" element={<MainLayout><CartPage /></MainLayout>} />
+              <Route path="/checkout" element={<MainLayout><CheckoutPage /></MainLayout>} />
+              <Route path="/orders" element={<MainLayout><OrdersManagementPage /></MainLayout>} />
+
+              <Route path="/registration" element={<AuthLayout><SignUp /></AuthLayout>} />
+              <Route path="/register" element={<AuthLayout><SignUp /></AuthLayout>} />
+              <Route path="/login" element={<AuthLayout><LoginPage /></AuthLayout>} />
+              <Route path="/contact" element={<AuthLayout><ContactUs /></AuthLayout>} />
+
+              <Route element={<ProtectedAdminRoute />}>
+                <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="dashboard" element={<AdminDashboard />} />
+                  <Route path="products/list" element={<AdminProductsList />} />
+                  <Route path="add-product" element={<AdminAddProductPage />} />
+                  <Route path="products/category-view" element={<AdminViewProductsByCategory />}/>
+                  <Route path="edit-product/:productId" element={<AdminEditProductPage />} />
+                  <Route path="users" element={<AdminUsersList />}/>
+                  <Route path="*" element={<div>Page Admin Non Trouvée</div>} />
+                </Route>
+              </Route>
+              <Route path="*" element={<SimpleLayout><div>Page Non Trouvée</div></SimpleLayout>} />
+            </Routes>
+          </Router>
+        </CartProvider>
+      </WishlistProvider>
     </AuthProvider>
   );
 }

@@ -1,0 +1,243 @@
+.App {
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+  padding: 20px 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.fruit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  width: 140px;
+  min-width: 140px;
+  height: 120px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.fruit-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-color: #4CAF50;
+}
+
+.fruit-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.fruit-item:hover .fruit-image {
+  transform: rotate(15deg);
+}
+
+.fruit-name {
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.fruit-item:hover .fruit-name {
+  color: #4CAF50;
+}
+
+.carousel-container:hover .carousel-track {
+  animation-play-state: paused;
+}
+.optimal-carousel-container {
+  width: 100%;
+  overflow: hidden;
+  height: 90px;
+  padding: 1rem 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  background-color: #000000;
+}
+
+.optimal-carousel-track {
+  display: flex;
+  gap: 1rem;
+  width: min-content;
+  animation: optimal-scroll 20s linear infinite;
+  padding: 0.5rem 0;
+}
+
+@keyframes optimal-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.optimal-fruit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem;
+  border-radius: 10px;
+  width: 120px;
+  min-width: 120px;
+  height: 120px;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.optimal-fruit-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  background: #fff;
+}
+
+.optimal-fruit-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 0.6rem;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.optimal-fruit-item:hover .optimal-fruit-image {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.optimal-fruit-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.optimal-fruit-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #333;
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.optimal-fruit-price {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #2ecc71;
+}
+
+.optimal-carousel-container:hover .optimal-carousel-track {
+  animation-play-state: paused;
+}
+
+.optimal-carousel-container:hover .optimal-fruit-item:not(:hover) {
+  opacity: 0.9;
+  transform: scale(0.97);
+}
+
+:root {
+  --item-width: 120px;     
+  --item-gap: 30px;    
+  --num-items: 8;        
+  --animation-duration: 30s;
+  --border-color: #e5e7eb; 
+  --border-height: 1px;
+}
+
+.optimal-carousel-container {
+  width: 100%;            
+  overflow: hidden;     
+  border-top: var(--border-height) solid var(--border-color);
+  border-bottom: var(--border-height) solid var(--border-color);
+  padding: 15px 0;  
+  margin: 2rem 0;    
+  background-color: #fcffe5; 
+  position: relative;    
+}
+
+
+.optimal-carousel-track {
+  display: flex;
+  gap: var(--item-gap);
+  width: calc(var(--num-items) * 2 * (var(--item-width) + var(--item-gap)));
+  animation: infiniteScroll var(--animation-duration) linear infinite;
+}
+
+.optimal-carousel-container:hover .optimal-carousel-track {
+  animation-play-state: paused;
+}
+
+.optimal-club-item {
+  flex: 0 0 var(--item-width); 
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px 5px;     
+  transition: transform 0.2s ease-out;
+}
+
+.optimal-club-item:hover {
+  transform: scale(1.05);
+}
+
+.optimal-club-badge {
+  width: 90px;     
+  height: 90px;         
+  object-fit: contain;  
+  margin-bottom: 8px; 
+}
+
+
+.optimal-club-name {
+  font-size: 0.8rem;    
+  font-weight: 500;    
+  color: #374151;        
+  white-space: nowrap;   
+}
+
+@keyframes infiniteScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

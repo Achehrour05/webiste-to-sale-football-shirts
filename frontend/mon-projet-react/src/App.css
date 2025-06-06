@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+body{
+   overflow-x: hidden;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -14,7 +16,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +36,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+:root {
+  --light: 0; 
+
+  --primary-color: hsl(
+    calc(64 + 220 * var(--light)),
+    calc(77% - 7% * var(--light)),
+    calc(79% - 56% * var(--light))
+  );
+  --bg-color: hsl(
+    calc(284 - 220 * var(--light)),
+    calc(70% + 7% * var(--light)),
+    calc(23% + 56% * var(--light))
+  );
+  --text-primary-color: hsl(
+    calc(0 + 60 * var(--light)),
+    calc(0% + 19% * var(--light)),
+    calc(97% - 89% * var(--light))
+  );
+}
+
+
+
+.perspective-100px_custom { /* Si vous avez besoin de cette classe pour 'perspective' */
+  perspective: 100px;
 }

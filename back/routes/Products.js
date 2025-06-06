@@ -63,6 +63,61 @@ router.get('/boots', (req, res) => {
       res.json(results);
     });
   });
+
+  router.get('/carouselimages', (req, res) => {
+    const limit = parseInt(req.query.limit) || null;
+    let query = "SELECT * FROM carouselimages WHERE category = 'carouselImages'";
+    const params = [];
+  
+    if (limit) {
+      query += ' LIMIT ?';
+      params.push(limit);
+    }
+  
+    db.query(query, params, (err, results) => {
+      if (err) {
+        console.error('❌ DB Error:', err.message);
+        return res.status(500).json({ error: 'Database error' });
+      }
+      res.json(results);
+    });
+  });
+  router.get('/bottomimages', (req, res) => {
+    const limit = parseInt(req.query.limit) || null;
+    let query = "SELECT * FROM carouselimages WHERE category = 'bottomImages'";
+    const params = [];
+  
+    if (limit) {
+      query += ' LIMIT ?';
+      params.push(limit);
+    }
+  
+    db.query(query, params, (err, results) => {
+      if (err) {
+        console.error('❌ DB Error:', err.message);
+        return res.status(500).json({ error: 'Database error' });
+      }
+      res.json(results);
+    });
+  });
+    router.get('/categories', (req, res) => {
+    const limit = parseInt(req.query.limit) || null;
+    let query = "SELECT * FROM carouselimages WHERE category = 'categories'";
+    const params = [];
+  
+    if (limit) {
+      query += ' LIMIT ?';
+      params.push(limit);
+    }
+  
+    db.query(query, params, (err, results) => {
+      if (err) {
+        console.error('❌ DB Error:', err.message);
+        return res.status(500).json({ error: 'Database error' });
+      }
+      res.json(results);
+    });
+  });
       router.get('/jackets', (req, res) => {
     const limit = parseInt(req.query.limit) || null;
     let query = "SELECT * FROM allproducts WHERE category = 'Jacket'";
@@ -223,5 +278,8 @@ router.get('/:id', (req, res) => {
     res.json(result[0]);
   });
 });
+
+
+
   
 module.exports = router;

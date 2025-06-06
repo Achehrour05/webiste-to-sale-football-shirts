@@ -9,7 +9,6 @@ const db = mysql.createConnection({
   database: 'test',
 });
 
-// 🔁 Helper function to avoid repeating code
 function getKitsByCategory(category, req, res) {
   const limit = parseInt(req.query.limit) || null;
   let query = 'SELECT * FROM kits WHERE category = ?';
@@ -29,7 +28,6 @@ function getKitsByCategory(category, req, res) {
   });
 }
 
-// Category routes with optional limit
 router.get('/england', (req, res) => getKitsByCategory('england', req, res));
 router.get('/france', (req, res) => getKitsByCategory('france', req, res));
 router.get('/germain', (req, res) => getKitsByCategory('germain', req, res));
@@ -37,7 +35,6 @@ router.get('/italie', (req, res) => getKitsByCategory('italie', req, res));
 router.get('/spain', (req, res) => getKitsByCategory('spain', req, res));
 router.get('/other', (req, res) => getKitsByCategory('other', req, res));
 
-// Route to get all kits with optional limit
 router.get('/all', (req, res) => {
   const limit = parseInt(req.query.limit) || null;
   let query = 'SELECT * FROM kits';

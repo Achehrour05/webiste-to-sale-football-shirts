@@ -1,4 +1,3 @@
-// utils/fetchProducts.js
 export const fetchAndFormatProducts = async (url, imagePathField = 'path') => {
     try {
       const res = await fetch(url);
